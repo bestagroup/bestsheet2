@@ -1,8 +1,6 @@
 @extends('layouts.base')
-
 @section('title', 'مدیریت کاربران داشبورد')
 <link rel="stylesheet" href="{{ asset('https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css') }}"/>
-
 @section('content')
     <div class="card">
         <div class="card-body">

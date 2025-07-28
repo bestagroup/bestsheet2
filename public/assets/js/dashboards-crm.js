@@ -222,12 +222,16 @@
       "برنامه های فروش",
       "افزایش سرمایه",
       "جذب مشتری جدید",
+      "برنامه های توسعه",
+      "افزایش سرمایه",
     ],
     p = [
       "Development",
       "UI Design",
       "Application",
       "App Wireframing",
+      "Prototyping",
+      "Prototyping",
       "Prototyping",
     ],
     h = {
@@ -241,7 +245,7 @@
         {
           data: [
             {
-              x: "کاترین",
+              x: "بشسی",
               y: [
                 new Date(new Date().getFullYear() + "-01-01").getTime(),
                 new Date(new Date().getFullYear() + "-05-02").getTime(),
@@ -249,7 +253,7 @@
               fillColor: config.colors.primary,
             },
             {
-              x: "جادل",
+              x: "شسیشس",
               y: [
                 new Date(new Date().getFullYear() + "-02-18").getTime(),
                 new Date(new Date().getFullYear() + "-05-30").getTime(),
@@ -257,7 +261,7 @@
               fillColor: config.colors.success,
             },
             {
-              x: "ولینگتون",
+              x: "شسیشسی",
               y: [
                 new Date(new Date().getFullYear() + "-02-07").getTime(),
                 new Date(new Date().getFullYear() + "-05-31").getTime(),
@@ -265,21 +269,37 @@
               fillColor: config.colors.secondary,
             },
             {
-              x: "بلیک",
+              x: "شسیشسی",
               y: [
                 new Date(new Date().getFullYear() + "-01-14").getTime(),
                 new Date(new Date().getFullYear() + "-06-30").getTime(),
               ],
               fillColor: config.colors.info,
             },
-            {
-              x: "کوین",
-              y: [
-                new Date(new Date().getFullYear() + "-04-01").getTime(),
-                new Date(new Date().getFullYear() + "-07-31").getTime(),
-              ],
-              fillColor: config.colors.warning,
-            },
+              {
+                  x: "شسیشسی",
+                  y: [
+                      new Date(new Date().getFullYear() + "-04-01").getTime(),
+                      new Date(new Date().getFullYear() + "-07-31").getTime(),
+                  ],
+                  fillColor: config.colors.warning,
+              },
+              {
+                  x: "شسیشسی",
+                  y: [
+                      new Date(new Date().getFullYear() + "-04-01").getTime(),
+                      new Date(new Date().getFullYear() + "-07-31").getTime(),
+                  ],
+                  fillColor: config.colors.warning,
+              },
+              {
+                  x: "بلبیل",
+                  y: [
+                      new Date(new Date().getFullYear() + "-04-01").getTime(),
+                      new Date(new Date().getFullYear() + "-07-31").getTime(),
+                  ],
+                  fillColor: config.colors.warning,
+              },
           ],
         },
       ],

@@ -1,7 +1,7 @@
 @php
     $theme = session('theme', 'theme-default');
 @endphp
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl" data-theme="{{ $theme }}">
 <head>
     <meta charset="utf-8"/>
@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/IRANSans.css') }}"/>
 
     <!-- Toastr -->
-
-
 
     <!-- Core & Theme CSS -->
     @if(session('theme') === 'theme-default-dark')
@@ -45,13 +43,12 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/editor.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')}}" />
 
-    @yield('style')
     <!-- Helpers & Config -->
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
     <script src="{{ asset('assets/js/config.js') }}"></script>
 
+    @yield('style')
 
-    @stack('head')
 </head>
 <!-- Debug -->
 

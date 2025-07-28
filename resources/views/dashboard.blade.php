@@ -1,7 +1,9 @@
 @extends('layouts.base')
 
-@section('title', 'داشبورد')
-
+@section('style')
+<link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/dataTables.dataTables.min.css') }}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css"/>
+@endsection
 @section('content')
 
     <div class="row gy-4 mb-4">
@@ -61,7 +63,7 @@
                             </div>
                         </div>
                         <div class="card-info mt-4 pt-1">
-                            <p class="text-muted">طرح سرمایه گذاری شده</p>
+                            <p class="text-muted">طرح های جاری</p>
                             <h5 class="mb-2">{{DB::table('projects')->whereFlow_level('درحال انجام تعهدات')->count()}}</h5>
                         </div>
                     </div>
@@ -135,10 +137,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <small class="text-body mb-0">4 پروژه در حال اجرا</small>
+                                <small class="text-body mb-0">{{DB::table('projects')->whereFlow_level('درحال انجام تعهدات')->count()}}  پروژه در حال اجرا </small>
                             </div>
                             <div class="card-body">
-                                @foreach($projects->take(4) as $project)
+                                @foreach($projects->take(7) as $project)
                                 <div class="d-flex align-items-center mb-3 pb-1">
                                     <div class="avatar">
                                         <div class="rounded bg-lighter d-flex align-items-center h-px-30">
