@@ -343,6 +343,19 @@
                                     KPI
                                 </button>
                             </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="commitment-tab{{ $project->id }}" data-bs-toggle="tab" data-bs-target="#tab-commitment{{ $project->id }}"
+                                        type="button" role="tab" aria-controls="tab-commitment{{ $project->id }}" aria-selected="false">
+                                    تعهدات
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="guaranty-tab{{ $project->id }}" data-bs-toggle="tab" data-bs-target="#tab-guaranty{{ $project->id }}"
+                                        type="button" role="tab" aria-controls="tab-guaranty{{ $project->id }}" aria-selected="false">
+                                    تضامین
+                                </button>
+                            </li>
+
                         </ul>
 
                         <!-- Tab Content -->
@@ -350,26 +363,337 @@
                             <!-- Profile Tab -->
                             <div class="tab-pane fade show active" id="tab-profile{{ $project->id }}" role="tabpanel" aria-labelledby="profile-tab{{ $project->id }}">
                                 <img src="@if($project->logo) {{asset('storage/'.$project->logo)  }} @endif"  class="rounded-circle mb-3" width="80" height="80"  alt="لوگو">
-                                <p><strong>نام تجاری:</strong> {{ $project->company_name }}</p>
-                                <p><strong>معرفی طرح:</strong> {{ $project->description }}</p>
-                                <p><strong>مدیرعامل:</strong> {{ $project->CEO }}</p>
-                                <p><strong>شماره موبایل:</strong> {{ $project->ceo_phone }}</p>
-                                <p><strong>وضعیت پروژه:</strong> {{ $project->activity_status }}</p>
+                                <p><strong>نام تجاری:</strong>    {{ $project->company_name }}  </p>
+                                <p><strong>معرفی طرح:</strong>    {{ $project->description }}   </p>
+                                <p><strong>مدیرعامل:</strong>     {{ $project->CEO }}           </p>
+                                <p><strong>شماره موبایل:</strong> {{ $project->ceo_phone }}     </p>
+                                <p><strong>وضعیت پروژه:</strong>  {{ $project->activity_status }}</p>
                             </div>
 
                             <!-- Investment Tab -->
+                            <style>
+                                input[type="checkbox"].status-green:checked {
+                                    accent-color: #28a745;
+                                }
+                                input[type="checkbox"].status-red:checked {
+                                    accent-color: #dc3545;
+                                }
+                            </style>
                             <div class="tab-pane fade" id="tab-investment{{ $project->id }}" role="tabpanel" aria-labelledby="investment-tab{{ $project->id }}">
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <input type="checkbox" {{ $project->step_1 ? 'checked' : '' }} disabled> ارسال مدارک
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox" {{ $project->step_2 ? 'checked' : '' }} disabled> ارزیابی اولیه
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox" {{ $project->step_3 ? 'checked' : '' }} disabled> تایید نهایی
-                                    </li>
-                                </ul>
+                                <div class="accordion" id="projectStepsAccordion{{ $project->id }}">
+                                    <!-- مرحله 1 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading1">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                                                <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }} status-green" {{ $project->step_1 ? 'checked' : '' }}checked disabled>
+                                                بررسی اولیه طرح
+                                            </button>
+                                        </h2>
+                                        <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
+                                            <div class="accordion-body">
+                                                <form>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۱</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۲</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۳</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">توضیحات</label>
+                                                        <textarea class="form-control" rows="3"></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- مرحله 2 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading2">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                                <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }}" {{ $project->step_1 ? 'checked' : '' }} disabled>
+                                                غربالگری
+                                            </button>
+                                        </h2>
+                                        <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
+                                            <div class="accordion-body">
+                                                <form>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۱</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۲</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۳</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">توضیحات</label>
+                                                        <textarea class="form-control" rows="3"></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- مرحله 3 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading3">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                                <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }}" {{ $project->step_1 ? 'checked' : '' }} disabled>
+                                                ارزیابی اولیه
+                                            </button>
+                                        </h2>
+                                        <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
+                                            <div class="accordion-body">
+                                                <form>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۱</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۲</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۳</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">توضیحات</label>
+                                                        <textarea class="form-control" rows="3"></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading4">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                                <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }}" {{ $project->step_1 ? 'checked' : '' }} disabled>
+                                                ارزیابی موشکافانه
+                                            </button>
+                                        </h2>
+                                        <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
+                                            <div class="accordion-body">
+                                                <form>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۱</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۲</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۳</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">توضیحات</label>
+                                                        <textarea class="form-control" rows="3"></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading5">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                                <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }}" {{ $project->step_1 ? 'checked' : '' }} disabled>
+                                                اخذ تاییدیه مدیرعامل دانشمند
+                                            </button>
+                                        </h2>
+                                        <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
+                                            <div class="accordion-body">
+                                                <form>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۱</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۲</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۳</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">توضیحات</label>
+                                                        <textarea class="form-control" rows="3"></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading6">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                                                <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }}" {{ $project->step_1 ? 'checked' : '' }} disabled>
+                                                ارزش ‌گذاری
+                                            </button>
+                                        </h2>
+                                        <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="heading6" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
+                                            <div class="accordion-body">
+                                                <form>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۱</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۲</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۳</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">توضیحات</label>
+                                                        <textarea class="form-control" rows="3"></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading7">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                                                <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }}" {{ $project->step_1 ? 'checked' : '' }} disabled>
+                                                ارائه طرح در کمیته ارزش‌گذاری
+                                            </button>
+                                        </h2>
+                                        <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="heading7" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
+                                            <div class="accordion-body">
+                                                <form>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۱</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۲</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۳</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">توضیحات</label>
+                                                        <textarea class="form-control" rows="3"></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading8">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                                                <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }}" {{ $project->step_1 ? 'checked' : '' }} disabled>
+                                                اخذ تاییدیه مدیرعامل سینا وی‌سی
+                                            </button>
+                                        </h2>
+                                        <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="heading8" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
+                                            <div class="accordion-body">
+                                                <form>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۱</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۲</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۳</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">توضیحات</label>
+                                                        <textarea class="form-control" rows="3"></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading9">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                                                <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }}" {{ $project->step_1 ? 'checked' : '' }} disabled>
+                                                عقد قرارداد
+                                            </button>
+                                        </h2>
+                                        <div id="collapse9" class="accordion-collapse collapse" aria-labelledby="heading9" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
+                                            <div class="accordion-body">
+                                                <form>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۱</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۲</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۳</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">توضیحات</label>
+                                                        <textarea class="form-control" rows="3"></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading10">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                                                <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }}" {{ $project->step_1 ? 'checked' : '' }} disabled>
+                                                رد طرح
+                                            </button>
+                                        </h2>
+                                        <div id="collapse10" class="accordion-collapse collapse" aria-labelledby="heading10" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
+                                            <div class="accordion-body">
+                                                <form>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۱</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۲</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۳</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">توضیحات</label>
+                                                        <textarea class="form-control" rows="3"></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Payments Tab  -->
@@ -378,15 +702,19 @@
                                     <thead>
                                     <tr>
                                         <th>مبلغ</th>
+                                        <th>شماره قسط</th>
                                         <th>تاریخ پرداخت</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($project->payments ?? [] as $payment)
+                                    @foreach($finances as $payment)
+                                        @if($payment->project_id == $project->id)
                                         <tr>
                                             <td>{{ number_format($payment->amount) }} تومان</td>
-                                            <td>{{ jdate($payment->date)->format('Y/m/d') }}</td>
+                                            <td>{{ $payment->serial }}</td>
+                                            <td>{{ $payment->date }}</td>
                                         </tr>
+                                        @endif
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -395,13 +723,65 @@
                             <!-- KPI Tab -->
                             <div class="tab-pane fade" id="tab-kpi{{ $project->id }}" role="tabpanel" aria-labelledby="kpi-tab{{ $project->id }}">
                                 <ul class="list-group">
-                                    @foreach($project->kpis ?? [] as $kpi)
-                                        <li class="list-group-item" >
-                                            <input type="checkbox" {{ $kpi->completed ? 'checked' : '' }} disabled> {{ $kpi->title }}
-                                        </li>
+                                    @foreach($finances as $payment)
+                                        @if($payment->project_id == $project->id)
+                                            <tr>
+                                                <td>{{ number_format($payment->amount) }} تومان</td>
+                                                <td>{{ $payment->serial }}</td>
+                                                <td>{{ $payment->date }}</td>
+                                            </tr>
+                                        @endif
                                     @endforeach
                                 </ul>
                             </div>
+
+                            <div class="tab-pane fade" id="tab-commitment{{ $project->id }}" role="tabpanel" aria-labelledby="commitment-tab{{ $project->id }}">
+                                <table class="table table-bordered mt-2">
+                                    <thead>
+                                    <tr>
+                                        <th>مبلغ</th>
+                                        <th>شماره قسط</th>
+                                        <th>تاریخ پرداخت</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($finances as $payment)
+                                        @if($payment->project_id == $project->id)
+                                            <tr>
+                                                <td>{{ number_format($payment->amount) }} تومان</td>
+                                                <td>{{ $payment->serial }}</td>
+                                                <td>{{ $payment->date }}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="tab-pane fade" id="tab-guaranty{{ $project->id }}" role="tabpanel" aria-labelledby="guaranty-tab{{ $project->id }}">
+                                <table class="table table-bordered mt-2">
+                                    <thead>
+                                    <tr>
+                                        <th>مبلغ</th>
+                                        <th>شماره قسط</th>
+                                        <th>تاریخ پرداخت</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($finances as $payment)
+                                        @if($payment->project_id == $project->id)
+                                            <tr>
+                                                <td>{{ number_format($payment->amount) }} تومان</td>
+                                                <td>{{ $payment->serial }}</td>
+                                                <td>{{ $payment->date }}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+
+
                         </div>
                     </div>
 

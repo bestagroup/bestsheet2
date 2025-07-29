@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
+use App\Models\Finance;
 use App\Models\MenuPanel;
 use App\Models\Project;
 use App\Models\SubmenuPanel;
@@ -19,6 +20,8 @@ class ProjectController extends Controller
         $submenupanels  = SubmenuPanel::select('id','priority','title','label','menu_id','slug','status','class','controller')->get();
         $menupanels     = Menupanel::select('id','priority', 'title','label', 'slug', 'status' , 'class' , 'controller')->get();
         $projects       = Project::all();
+        $finances       = Finance::all();
+
         $thispage       = [
             'title'   => 'مدیریت پروژه ها',
             'list'    => 'لیست پروژه ها',
@@ -139,7 +142,7 @@ class ProjectController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('panel.project')->with(compact(['thispage' , 'submenupanels' , 'menupanels' , 'projects']));
+        return view('panel.project')->with(compact(['thispage' , 'submenupanels' , 'menupanels' , 'projects' , 'finances']));
     }
 
     public function store(Request $request)
