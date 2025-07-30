@@ -118,43 +118,45 @@
 
 
         @foreach($menupanels as $menupanel)
-            @if($menupanel->id == 1)
-                <li class="menu-item {{ $menupanel->is_active ? 'active open' : '' }}">
-                    <a class="menu-link" href="{{url($menupanel->slug) }}">
-                        <i class="menu-icon tf-icons mdi {{ $menupanel->icon }}"></i>
-                        <div>{{ $menupanel->label }}</div>
-                    </a>
-                </li>
-            @endif
-
             @php
-                // بررسی اینکه آیا هیچ زیرمنویی هست که کاربر بتونه ببینه؟
                 $hasVisibleSubmenus = $menupanel->accessible_submenus->filter(fn($submenu) =>
                     Gate::allows('can-access', [$submenu->slug, 'view']))->isNotEmpty();
+                $isActive = $menupanel->is_active ? 'active open bg-red' : '';
+                $isToggle = $menupanel->submenu == 1 && $hasVisibleSubmenus;
             @endphp
 
-            @if($hasVisibleSubmenus)
-                <li class="menu-item {{ $menupanel->is_active ? 'active open' : '' }}">
-                    <a class="menu-link {{ $menupanel->submenu == 1 ? 'menu-toggle' : '' }}"
-                       href="{{ $menupanel->submenu == 1 ? 'javascript:void(0);' : $menupanel->slug }}">
-                        <i class="menu-icon tf-icons mdi {{ $menupanel->icon }}"></i>
-                        <div>{{ $menupanel->label }}</div>
-                    </a>
-                    @if($menupanel->accessible_submenus->isNotEmpty())
-                        <ul class="menu-sub">
-                            @foreach($menupanel->accessible_submenus as $submenu)
-                                @if(Gate::allows('can-access', [$submenu->slug, 'view']))
-                                    <li class="menu-item {{ request()->segment(2) == $submenu->slug ? 'active' : '' }}">
-                                        <a class="menu-link" href="{{ url('panel/' . $submenu->slug) }}">
-                                            <div>{{ $submenu->label }}</div>
-                                        </a>
-                                    </li>
-                                @endif
-                            @endforeach
-                        </ul>
+            <li class="menu-item {{ $isActive }}">
+                <a class="menu-link d-flex align-items-center {{ $isToggle ? 'menu-toggle' : '' }}"
+                   href="{{ $isToggle ? 'javascript:void(0);' : url($menupanel->slug) }}">
+
+                    {{-- آیکون --}}
+                    <i class="menu-icon tf-icons mdi {{ $menupanel->icon }} ms-2"></i>
+
+                    {{-- عنوان منو --}}
+                    <div class="flex-grow-1">{{ $menupanel->label }}</div>
+
+                    {{-- badge اختیاری --}}
+                    @if(!empty($menupanel->badge))
+                        <div class="badge bg-primary rounded-pill ms-auto">{{ $menupanel->badge }}</div>
                     @endif
-                </li>
-            @endif
+                </a>
+
+                {{-- زیرمنوها --}}
+                @if($isToggle)
+                    <ul class="menu-sub px-2">
+                        @foreach($menupanel->accessible_submenus as $submenu)
+                            @if(Gate::allows('can-access', [$submenu->slug, 'view']))
+                                <li class="menu-item {{ request()->segment(2) == $submenu->slug ? 'active' : '' }}">
+                                    <a class="menu-link d-flex align-items-center"
+                                       href="{{ url('panel/' . $submenu->slug) }}">
+                                        <div>{{ $submenu->label }}</div>
+                                    </a>
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                @endif
+            </li>
         @endforeach
 
     </ul>
