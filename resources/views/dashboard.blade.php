@@ -87,6 +87,24 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+                            <div class="avatar">
+                                <div class="avatar-initial bg-label-primary rounded">
+                                    <i class="mdi mdi-chart-box mdi-24px"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-info mt-4 pt-1">
+                            <p class="text-muted">طرح های رد شده</p>
+                            <h5 class="mb-2">{{DB::table('projects')->where('flow_level', 'رد طرح')->count()}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="row gy-4">
