@@ -86,7 +86,7 @@ class MenupanelController extends Controller
     public function store(Request $request)
     {
         try {
-            $priority = MenuPanel::orderBy('priority' , 'DESC')->first;
+            $priority = MenuPanel::select('priority')->orderBy('priority' , 'DESC')->first;
             $menu_panel = new Menupanel();
             $menu_panel->title        = $request->input('title');
             $menu_panel->label        = $request->input('label');
