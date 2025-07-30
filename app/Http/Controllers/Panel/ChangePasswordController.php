@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -25,7 +26,10 @@ class ChangePasswordController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        Auth::user()->update(['password' => Hash::make($request->password), 'change_password' => 1]);
+        $user = User::findOrfail(Auth::user()->id);
+        $user->password         =  Hash::make($request->input('password'));
+        $user->change_password  =  1;
+        $user->update();
 
         return Redirect::route('dashboard');
 
