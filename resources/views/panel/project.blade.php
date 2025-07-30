@@ -512,7 +512,7 @@
                                         <h2 class="accordion-header" id="heading5">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
                                                 <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }}" {{ $project->step_1 ? 'checked' : '' }} disabled>
-                                                اخذ تاییدیه مدیرعامل دانشمند
+                                                تاییدیه مدیرعامل و هیئت مدیره سینا وی سی
                                             </button>
                                         </h2>
                                         <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
@@ -543,7 +543,7 @@
                                         <h2 class="accordion-header" id="heading6">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
                                                 <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }}" {{ $project->step_1 ? 'checked' : '' }} disabled>
-                                                ارزش ‌گذاری
+                                                تاییدیه مدیرعامل و هیئت مدیره دانشمند
                                             </button>
                                         </h2>
                                         <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="heading6" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
@@ -574,7 +574,7 @@
                                         <h2 class="accordion-header" id="heading7">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
                                                 <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }}" {{ $project->step_1 ? 'checked' : '' }} disabled>
-                                                ارائه طرح در کمیته ارزش‌گذاری
+                                                تصویب هیئت مدیره سینا وی سی
                                             </button>
                                         </h2>
                                         <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="heading7" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
@@ -605,7 +605,7 @@
                                         <h2 class="accordion-header" id="heading8">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
                                                 <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }}" {{ $project->step_1 ? 'checked' : '' }} disabled>
-                                                اخذ تاییدیه مدیرعامل سینا وی‌سی
+                                                ارزش گذاری
                                             </button>
                                         </h2>
                                         <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="heading8" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
@@ -636,7 +636,7 @@
                                         <h2 class="accordion-header" id="heading9">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
                                                 <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }}" {{ $project->step_1 ? 'checked' : '' }} disabled>
-                                                عقد قرارداد
+                                                ارائه طرح در کمیته ارزش گذاری
                                             </button>
                                         </h2>
                                         <div id="collapse9" class="accordion-collapse collapse" aria-labelledby="heading9" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
@@ -667,7 +667,7 @@
                                         <h2 class="accordion-header" id="heading10">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
                                                 <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }}" {{ $project->step_1 ? 'checked' : '' }} disabled>
-                                                رد طرح
+                                                توافق قراردادی
                                             </button>
                                         </h2>
                                         <div id="collapse10" class="accordion-collapse collapse" aria-labelledby="heading10" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
@@ -693,6 +693,131 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading11">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
+                                                <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }}" {{ $project->step_1 ? 'checked' : '' }} disabled>
+                                                تصویب قرارداد در هیئت میره سینا وی سی
+                                            </button>
+                                        </h2>
+                                        <div id="collapse11" class="accordion-collapse collapse" aria-labelledby="heading11" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
+                                            <div class="accordion-body">
+                                                <form>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۱</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۲</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۳</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">توضیحات</label>
+                                                        <textarea class="form-control" rows="3"></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading12">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse12" aria-expanded="false" aria-controls="collapse12">
+                                                <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }}" {{ $project->step_1 ? 'checked' : '' }} disabled>
+                                                عقد قرارداد
+                                            </button>
+                                        </h2>
+                                        <div id="collapse12" class="accordion-collapse collapse" aria-labelledby="heading12" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
+                                            <div class="accordion-body">
+                                                <form>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۱</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۲</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۳</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">توضیحات</label>
+                                                        <textarea class="form-control" rows="3"></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading13">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse13" aria-expanded="false" aria-controls="collapse13">
+                                                <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }}" {{ $project->step_1 ? 'checked' : '' }} disabled>
+                                                پایان دوره ارزش آفرینی
+                                            </button>
+                                        </h2>
+                                        <div id="collapse13" class="accordion-collapse collapse" aria-labelledby="heading13" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
+                                            <div class="accordion-body">
+                                                <form>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۱</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۲</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۳</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">توضیحات</label>
+                                                        <textarea class="form-control" rows="3"></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading10">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                                                <input type="checkbox" class="me-2 {{ $project->step_1 === 'rejected' ? 'status-red' : ($project->step_1 ? 'status-green' : '') }}" {{ $project->step_1 ? 'checked' : '' }} disabled>
+                                                خروج از طرح
+                                            </button>
+                                        </h2>
+                                        <div id="collapse10" class="accordion-collapse collapse" aria-labelledby="heading10" data-bs-parent="#projectStepsAccordion{{ $project->id }}">
+                                            <div class="accordion-body">
+                                                <form>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۱</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۲</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">ورودی ۳</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">توضیحات</label>
+                                                        <textarea class="form-control" rows="3"></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
