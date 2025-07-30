@@ -96,7 +96,7 @@ class MenupanelController extends Controller
             $menu_panel->controller   = $request->input('controller');
             $menu_panel->user_id      = 1;
             $menu_panel->status       = $request->input('status');
-            $menu_panel->priority     = $priority;
+            $menu_panel->priority     = $priority + 1;
 
             $result1 = $menu_panel->save();
 

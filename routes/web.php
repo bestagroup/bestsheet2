@@ -24,6 +24,7 @@ Route::middleware('admin')->namespace('App\Http\Controllers\Panel')->group(funct
     Route::resource('panel/paidmanage'   , 'PaidController');
     Route::resource('panel/receivemanage', 'ReceiveController');
     Route::resource('panel/account'      , 'AccountController');
+    Route::resource('panel/calendar'     , 'CalendarController');
 
 
     Route::post('panel/store'              , 'FilemanagerController@store')     ->name('storemedia');
