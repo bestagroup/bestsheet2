@@ -24,8 +24,8 @@ class CheckAdminAuthenticated
         $user = Auth::guard($guard)->user();
 
         if ($user->change_password == null) {
-            if (!$request->routeIs('changepassword') && !$request->routeIs('changepassword.form')) {
-                return redirect()->route('changepassword');
+            if (!$request->routeIs('password.change.form') && !$request->routeIs('password.change.submit')) {
+                return redirect()->route('password.change.form');
             }
         }
         //$hasAccess = $user->roles()->where('level', 'admin')->exists();
