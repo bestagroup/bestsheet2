@@ -25,7 +25,8 @@ Route::middleware('admin')->namespace('App\Http\Controllers\Panel')->group(funct
     Route::resource('panel/receivemanage', 'ReceiveController');
     Route::resource('panel/account'      , 'AccountController');
     Route::resource('panel/calendar'     , 'CalendarController');
-    Route::resource('panel/changepassword', 'ChangePasswordController');
+    Route::get('panel/changepassword'      , 'ChangePasswordController@index')->name('changepassword');
+    Route::post('panel/changepassword/form', 'ChangePasswordController@change')->name('changepassword.form');
 
 
     Route::post('panel/store'              , 'FilemanagerController@store')     ->name('storemedia');

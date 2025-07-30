@@ -11,7 +11,7 @@
                     <h4 class="mb-2 fw-semibold">خوش آمدید! 👋</h4>
                     <p class="mb-4">لطفاً وارد حساب خود شوید</p>
 
-                    <form id="formAuthentication" class="mb-3" action="{{ route('changepassword') }}" method="POST">
+                    <form id="formAuthentication" class="mb-3" action="{{ route('changepassword.form') }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <div class="form-password-toggle">
