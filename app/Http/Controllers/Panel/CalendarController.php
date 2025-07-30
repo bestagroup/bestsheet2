@@ -9,15 +9,15 @@ class CalendarController extends Controller
 {
     public function index(){
         $thispage       = [
-            'title'   => 'مدیریت پروژه ها',
-            'list'    => 'لیست پروژه ها',
-            'add'     => 'افزودن پروژه ها',
-            'create'  => 'ایجاد پروژه ها',
-            'enter'   => 'ورود پروژه ها',
-            'edit'    => 'ویرایش پروژه ها',
-            'delete'  => 'حذف پروژه ها',
+            'title'   => 'مدیریت رویداد تقویم',
+            'list'    => 'لیست رویداد تقویم',
+            'add'     => 'افزودن رویداد تقویم',
+            'create'  => 'ایجاد رویداد تقویم',
+            'enter'   => 'ورود رویداد تقویم',
+            'edit'    => 'ویرایش رویداد تقویم',
+            'delete'  => 'حذف رویداد تقویم',
         ];
 
-        return view('panel.calendar')->with('thispage');
+        return view('panel.calendar')->with(compact('thispage'));
     }
 }
