@@ -13,6 +13,6 @@ class ChangePassController extends Controller
             'list'    => 'داشبورد مدیریتی',
         ];
 
-        return view('')->with(compact('thispage'));
+        return view('auth.changepassword')->with(compact('thispage'));
     }
 }
