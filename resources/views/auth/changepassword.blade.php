@@ -9,7 +9,7 @@
 
                 <div class="card-body mt-2">
                     <h4 class="mb-2 fw-semibold">خوش آمدید! 👋</h4>
-                    <p class="mb-4">لطفاً وارد حساب خود شوید</p>
+                    <p class="mb-4">لطفاً وارد رمز عبور خود را تغییر دهید</p>
 
                     <form id="formAuthentication" class="mb-3" action="{{ route('password.change.submit') }}" method="POST">
                         @csrf
@@ -29,8 +29,8 @@
                             <div class="form-password-toggle">
                                 <div class="input-group input-group-merge">
                                     <div class="form-floating form-floating-outline">
-                                        <input type="password" id="password" class="form-control" name="password" placeholder="رمز عبور" required>
-                                        <label for="password">رمز عبور</label>
+                                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="تایید رمز عبور" required>
+                                        <label for="password_confirmation">تکرار رمزعبور</label>
                                     </div>
                                     <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
                                 </div>
