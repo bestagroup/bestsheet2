@@ -90,14 +90,14 @@
                 <div class="app-brand justify-content-center mt-5">
                     <a href="{{ url('/') }}" class="app-brand-link gap-2">
           <span class="app-brand-logo demo">
-            <img src="{{ asset('assets/img/logo.svg') }}" alt="Logo" width="40">
+            <img src="{{ asset('assets/img/sinavclogo.png') }}" alt="توسعه دانش بنیان سینا" width="40">
           </span>
-                        <span class="app-brand-text demo text-heading fw-bold">نام برند شما</span>
+                        <span class="app-brand-text demo text-heading fw-bold">توسعه دانش بنیان سینا</span>
                     </a>
                 </div>
 
                 <div class="card-body mt-2">
-                    <h4 class="mb-2 fw-semibold">ایجاد حساب کاربری جدید ✨</h4>
+                    <h4 class="mb-2 fw-semibold"> ایجاد حساب </h4>
                     <p class="mb-4">لطفا اطلاعات زیر را برای ثبت نام وارد کنید</p>
 
                     <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('register') }}">

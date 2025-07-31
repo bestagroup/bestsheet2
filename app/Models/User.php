@@ -85,4 +85,18 @@ class User extends Authenticatable
         return $this->hasMany(ActiveCode::class);
     }
 
+    public function logs()
+    {
+        return $this->hasMany(User_logs::class);
+    }
+
+    public function lastLogin()
+    {
+        return $this->hasOne(User_logs::class)
+            ->where('action', 'login')
+            ->where('status', true)
+            ->latestOfMany();
+    }
+
+
 }

@@ -31,7 +31,9 @@ class IndexController extends Controller
             ->orderBy('f.date' , 'DESC')
             ->get();
 
-        $users = User::select('name' , 'email' , 'gender')->get();
+        $users = User::with('lastLogin')
+            ->select('id', 'name', 'email', 'gender')
+            ->get();
 
         $totalPaid = DB::table('finances')->sum('amount');
 

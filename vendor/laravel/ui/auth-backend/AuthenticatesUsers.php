@@ -2,6 +2,8 @@
 
 namespace Illuminate\Foundation\Auth;
 
+use App\Models\User_logs;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,9 +22,6 @@ trait AuthenticatesUsers
     {
         $this->validateLogin($request);
 
-        // If the class is using the ThrottlesLogins trait, we can automatically throttle
-        // the login attempts for this application. We'll key this by the username and
-        // the IP address of the client making these requests into this application.
         if (method_exists($this, 'hasTooManyLoginAttempts') &&
             $this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
@@ -38,13 +37,23 @@ trait AuthenticatesUsers
             return $this->sendLoginResponse($request);
         }
 
-        // If the login attempt was unsuccessful we will increment the number of attempts
-        // to login and redirect the user back to the login form. Of course, when this
-        // user surpasses their maximum number of attempts they will get locked out.
         $this->incrementLoginAttempts($request);
+
+        $user = User::where('email', $request->input('email'))->first();
+
+        // ثبت لاگ ورود ناموفق
+        User_logs::create([
+            'user_id' => optional($user)->id,
+            'action' => 'failed_login',
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+            'status' => false,
+            'description' => 'تلاش ناموفق برای ورود (احتمالاً رمز عبور اشتباه)',
+        ]);
 
         return $this->sendFailedLoginResponse($request);
     }
+
 
     protected function validateLogin(Request $request)
     {
@@ -61,18 +70,25 @@ trait AuthenticatesUsers
         );
     }
 
-
     protected function credentials(Request $request)
     {
         return $request->only($this->username(), 'password');
     }
 
- 
     protected function sendLoginResponse(Request $request)
     {
         $request->session()->regenerate();
 
         $this->clearLoginAttempts($request);
+
+        User_logs::create([
+            'user_id' => auth()->id(),
+            'action' => 'login',
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+            'status' => true,
+            'description' => 'ورود موفق',
+        ]);
 
         if ($response = $this->authenticated($request, $this->guard()->user())) {
             return $response;
@@ -128,6 +144,15 @@ trait AuthenticatesUsers
      */
     public function logout(Request $request)
     {
+        User_logs::create([
+            'user_id' => auth()->id(),
+            'action' => 'logout',
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+            'status' => true,
+            'description' => 'خروج از حساب',
+        ]);
+
         $this->guard()->logout();
 
         $request->session()->invalidate();

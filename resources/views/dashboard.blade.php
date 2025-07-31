@@ -585,6 +585,7 @@
                                 <th class="py-3">ایمیل</th>
                                 <th class="py-3">نقش</th>
                                 <th class="py-3">وضعیت</th>
+                                <th class="py-3">اخرین ورود</th>
                             </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
@@ -603,6 +604,12 @@
                                     <td>{{$user->email}}</td>
                                     <td>مدیر</td>
                                     <td>فعال</td>
+                                    <td>@if($user->lastLogin && $user->lastLogin->created_at)
+                                            {{ jdate($user->lastLogin->created_at)->format('Y/m/d ساعت H:i') }}
+                                        @else
+                                            ورود ثبت نشده
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

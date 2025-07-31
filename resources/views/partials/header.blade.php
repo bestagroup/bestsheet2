@@ -99,16 +99,32 @@
             </a>
           </li>
           <li>
-            <a class="dropdown-item" href="#">
-              <i class="mdi mdi-logout me-2"></i>
-                <form method="POST" action="{{ route('logout') }}" style="display: inline;">
-                    @csrf
-                    <button type="submit" style="background: none; border: none; padding: 0; margin: 0; font: inherit; color: inherit; cursor: pointer;">
-                        <span class="align-middle">خروج</span>
-                    </button>
-                </form>
-            </a>
+              <a href="" class="dropdown-item" onclick="submitLogout(event)">
+                  <i class="mdi mdi-logout me-2"></i>
+                  <span class="align-middle">خروج</span>
+              </a>
           </li>
+            <script>
+                function submitLogout(event) {
+                    event.preventDefault(); // جلوگیری از رفتار پیش‌فرض لینک
+
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = '{{ route('logout') }}';
+
+                    const csrfToken = '{{ csrf_token() }}';
+
+                    const csrfInput = document.createElement('input');
+                    csrfInput.type = 'hidden';
+                    csrfInput.name = '_token';
+                    csrfInput.value = csrfToken;
+
+                    form.appendChild(csrfInput);
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+            </script>
+
         </ul>
       </li>
     </ul>
