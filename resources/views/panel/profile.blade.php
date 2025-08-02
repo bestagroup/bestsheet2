@@ -32,7 +32,7 @@
             <div class="card-body">
                 <div class="tab-content pb-0">
                     <div class="tab-pane fade show active justify-content-center" id="navs-user-card" role="tabpanel">
-                        <div class="card mb-12 col-md-12">
+                        <div class="mb-12 col-md-12">
                             <div class="card-body">
                                 <div class="user-avatar-section">
                                     <div class="d-flex align-items-center flex-column">
@@ -207,9 +207,70 @@
                         </div>
                     </div>
                     <!-- اطلاعات شرکت -->
-                    <div class="tab-pane fade justify-content-center" id="navs-co-profile-card" role="tabpanel">
-                        محتوای تب اطلاعات شرکت
+                    {{-- profile.blade.php یا هر جای مناسب --}}
+                    @php
+                        // فرض بر این که اطلاعات شرکت از دیتابیس اومده یا دستی تعریف شده
+                        $hasProfile = true;
+                        $profile = [
+                            'company_name' => 'شرکت دانش‌بنیان پارس',
+                            'registration_number' => '123456',
+                            'national_id' => '14001234567',
+                            'company_phone' => '021-22220000',
+                            'company_email' => 'info@parscompany.ir',
+                            'company_address' => 'تهران، بلوار کشاورز، پلاک ۱۰۰',
+                            'website' => 'parscompany.ir'
+                        ];
+                    @endphp
+
+                    <div class="tab-pane fade show active" id="navs-co-profile-card" role="tabpanel">
+                        {{-- نمایش کارت اطلاعات شرکت --}}
+                        <div id="companyProfileCard" class="{{ $hasProfile ? '' : 'd-none' }}">
+                            <div class="card border-0 shadow-sm mb-4" style="max-width:480px; margin:0 auto; border-radius: 1.25rem; background:rgba(255,255,255,0.94);">
+                                <div class="card-body p-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-3">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="rounded-circle d-flex justify-content-center align-items-center shadow-sm"
+                                                 style="width:56px; height:56px; background:#f2f3f6;">
+                                                <i class="mdi mdi-domain" style="font-size:2rem; color:#696cff"></i>
+                                            </div>
+                                            <div>
+                                                <div class="fw-bold mb-1" style="font-size:1.2rem;">{{ $profile['company_name'] }}</div>
+                                                <div class="small text-secondary" dir="ltr" style="font-size:0.95rem;">{{ $profile['website'] }}</div>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-primary rounded-pill px-3" onclick="toggleEditMode()" style="font-size:.98rem">
+                                            <i class="mdi mdi-pencil-outline"></i>
+                                            <span class="d-none d-md-inline">ویرایش</span>
+                                        </button>
+                                    </div>
+
+                                    <dl class="row mb-0" style="font-size:1.01rem;">
+                                        <dt class="col-5 text-secondary fw-normal text-end pb-1">شماره ثبت:</dt>
+                                        <dd class="col-7 mb-2 text-dark">{{ $profile['registration_number'] }}</dd>
+
+                                        <dt class="col-5 text-secondary fw-normal text-end pb-1">شناسه ملی:</dt>
+                                        <dd class="col-7 mb-2 text-dark">{{ $profile['national_id'] }}</dd>
+
+                                        <dt class="col-5 text-secondary fw-normal text-end pb-1">تلفن:</dt>
+                                        <dd class="col-7 mb-2 text-dark" dir="ltr" style="font-family:monospace">{{ $profile['company_phone'] }}</dd>
+
+                                        <dt class="col-5 text-secondary fw-normal text-end pb-1">ایمیل:</dt>
+                                        <dd class="col-7 mb-2 text-dark" dir="ltr" style="font-family:monospace">{{ $profile['company_email'] }}</dd>
+
+                                        <dt class="col-5 text-secondary fw-normal text-end pb-1">آدرس:</dt>
+                                        <dd class="col-7 mb-1 text-dark">{{ $profile['company_address'] }}</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        {{-- فرم ویرایش اطلاعات شرکت (در حالت عادی مخفی) --}}
+                        <div id="companyEditForm" class="{{ $hasProfile ? 'd-none' : '' }}">
+                            @include('partials.company_profile_form', ['profile' => $profile])
+                        </div>
                     </div>
+
 
                     <!-- فرایند سرمایه گذاری -->
                     <div class="tab-pane fade justify-content-center" id="navs-invest-card" role="tabpanel">
@@ -234,3 +295,13 @@
             </div>
         </div>
 @endsection
+
+        @push('scripts')
+            <script>
+                function toggleEditMode() {
+                    document.getElementById('companyProfileCard').classList.toggle('d-none');
+                    document.getElementById('companyEditForm').classList.toggle('d-none');
+                }
+            </script>
+    @endpush
+
