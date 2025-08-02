@@ -20,7 +20,7 @@
 
                 <div class="card-body mt-2">
                     <h4 class="mb-2 fw-semibold">بستر ارزیابی اطلاعات سازمان‌ یافته‌ی تجاری </h4>
-                    <p class="mb-4">لطفاً وارد حساب خود شوید</p>
+                    <p class="mb-4 text-center">(بِست شیت)</p>
 
                     <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
                         @csrf

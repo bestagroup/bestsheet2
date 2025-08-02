@@ -28,6 +28,7 @@ Route::middleware('admin')->namespace('App\Http\Controllers\Panel')->group(funct
 
     Route::get('panel/changepassword'      , 'ChangePasswordController@index')->name('password.change.form');
     Route::post('panel/changepassword'     , 'ChangePasswordController@change')->name('password.change.submit');
+    Route::post('panel/fullregister'       , 'FullregisterController@change')->name('fullregister');
 
     Route::post('panel/store'              , 'FilemanagerController@store')     ->name('storemedia');
     Route::get('panel/selectfile'          , 'FilemanagerController@selectfile')->name('selectfile');

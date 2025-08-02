@@ -1,86 +1,6 @@
-{{--@extends('layouts.auth')--}}
-
-{{--@section('content')--}}
-{{--<div class="container">--}}
-{{--    <div class="row justify-content-center">--}}
-{{--        <div class="col-md-8">--}}
-{{--            <div class="card">--}}
-{{--                <div class="card-header">{{ __('Register') }}</div>--}}
-
-{{--                <div class="card-body">--}}
-{{--                    <form method="POST" action="{{ route('register') }}">--}}
-{{--                        @csrf--}}
-
-{{--                        <div class="row mb-3">--}}
-{{--                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>--}}
-
-{{--                            <div class="col-md-6">--}}
-{{--                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>--}}
-
-{{--                                @error('name')--}}
-{{--                                    <span class="invalid-feedback" role="alert">--}}
-{{--                                        <strong>{{ $message }}</strong>--}}
-{{--                                    </span>--}}
-{{--                                @enderror--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="row mb-3">--}}
-{{--                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>--}}
-
-{{--                            <div class="col-md-6">--}}
-{{--                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">--}}
-
-{{--                                @error('email')--}}
-{{--                                    <span class="invalid-feedback" role="alert">--}}
-{{--                                        <strong>{{ $message }}</strong>--}}
-{{--                                    </span>--}}
-{{--                                @enderror--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="row mb-3">--}}
-{{--                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>--}}
-
-{{--                            <div class="col-md-6">--}}
-{{--                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">--}}
-
-{{--                                @error('password')--}}
-{{--                                    <span class="invalid-feedback" role="alert">--}}
-{{--                                        <strong>{{ $message }}</strong>--}}
-{{--                                    </span>--}}
-{{--                                @enderror--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="row mb-3">--}}
-{{--                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>--}}
-
-{{--                            <div class="col-md-6">--}}
-{{--                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="row mb-0">--}}
-{{--                            <div class="col-md-6 offset-md-4">--}}
-{{--                                <button type="submit" class="btn btn-primary">--}}
-{{--                                    {{ __('Register') }}--}}
-{{--                                </button>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </form>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
-{{--@endsection--}}
-
-
-
 @extends('layouts.auth')
 
-@section('title', 'ثبت نام')
+@section('title', 'ایجاد حساب و ثبت طرح')
 
 @section('content')
     <div class="authentication-wrapper authentication-basic container-p-y">
@@ -97,18 +17,28 @@
                 </div>
 
                 <div class="card-body mt-2">
-                    <h4 class="mb-2 fw-semibold"> ایجاد حساب </h4>
-                    <p class="mb-4">لطفا اطلاعات زیر را برای ثبت نام وارد کنید</p>
+                    <h4 class="mb-2 fw-semibold"> ایجاد حساب و ثبت طرح </h4>
+                    <p class="mb-4">لطفا اطلاعات زیر را با دقت وارد کنید</p>
 
-                    <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('register') }}">
+                    <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('fullregister') }}">
                         @csrf
                         <div class="form-floating form-floating-outline mb-3">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="نام" required autofocus>
-                            <label for="name">نام کاربری</label>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="نام شرکت / نام طرح" required>
+                            <label for="name">نام شرکت / نام طرح</label>
                         </div>
 
                         <div class="form-floating form-floating-outline mb-3">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="ایمیل" required>
+                            <input type="text" class="form-control" id="CEO" name="CEO" placeholder="نام رابط / نام مدیرعامل" required>
+                            <label for="name">نام رابط / نام مدیرعامل</label>
+                        </div>
+
+                        <div class="form-floating form-floating-outline mb-3">
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="شماره همراه" required>
+                            <label for="name">شماره همراه</label>
+                        </div>
+
+                        <div class="form-floating form-floating-outline mb-3">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="آدرس ایمیل" required>
                             <label for="email">آدرس ایمیل</label>
                         </div>
 
@@ -136,8 +66,17 @@
                             </div>
                         </div>
 
+                        <div class="mb-3 d-flex justify-content-between">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="terms-accepted" name="terms_accepted" required>
+                                <label class="form-check-label" for="terms-accepted">
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">شرایط و قوانین</a>  را با دقت مطالعه نموده ام.
+                                </label>
+                            </div>
+                        </div>
+
                         <div class="mb-3">
-                            <button class="btn btn-primary d-grid w-100" type="submit">{{ __('ثبت نام') }}</button>
+                            <button class="btn btn-primary d-grid w-100" type="submit">{{ __('ثبت اطلاعات') }}</button>
                         </div>
                     </form>
 
@@ -149,8 +88,42 @@
                     </p>
                 </div>
             </div>
-            <!-- /Register Card -->
-
+        </div>
+    </div>
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="termsModalLabel">شرایط و قوانین شرکت توسعه دانش بنیان سینا</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
+                </div>
+                <style>
+                    li {
+                        display: block;
+                        padding-left: 1.1em;
+                        padding-bottom: 30px;
+                    }
+                </style>
+                <div class="modal-body">
+                    <p>نکات بسیار مهم جهت بررسی و تایید طرح ها : </p>
+                    <ul>
+                        <li>1. شرکت توسعه دانش بنیان سینا (سینا وی سی) ممکن است بنابر صلاحدید به طرق مختلفی از جمله تامین مالی،  تامین خط تولید، تامین فضای انبارداری، تضمین بازار، پوشش ریسک و خدمات مشاوره کسب و کار تصمیم به حمایت از طرح های مورد تایید بگیرد.</li>
+                        <li>2. فایل ارسالی شما جهت آشنایی با تیم و کلیات طرح شماست و تکمیل آن به معنی تضمین برگزاری جلسه نیست. کارشناسان ما طرح شما را به صورت کامل بررسی می کنند و در صورت پذیرش با شما تماس خواهند گرفت.</li>
+                        <li>3. کسب و کار سینا وی سی، سرمایه‌گذاری است و علاقه‌ای به اجرای ایده‌ها ندارد. در نتیجه در بیان جزئیات کار خود صادق و دقیق بوده و اطمینان داشته باشید ایده‌ی شما دزدیده نخواهد شد! همچنین فراموش نکنید که معیار تصمیم‌گیری سینا وی سی برای برگزاری جلسه با شما، چیزی است که در فایل ارسالی شما مکتوب شده است.</li>
+                        <li>4. درخواست های بدون تیم بررسی نخواهند شد. پس از برگزاری جلسات اولیه، ممکن است سینا وی سی درخواست کند تمام تیم شما در جلساتی حضور داشته باشند؛ پس آن دسته از هم‌تیمی‌های خود را که واقعاً با شما همراهند در اینجا معرفی کنید.</li>
+                        <li>5. ایده‌های اجرا نشده بررسی نخواهند شد. ایده‌ها باید حداقل دارای دمو یا نمونه‌ اولیه یا کمینه محصول پذیرفتنی (MVP) باشند. همچنین طرح‌های اجرا شده‌ بدون کاربر، به سختی ممکن است حائز شرایط بررسی توسط سینا وی سی شوند.</li>
+                        <li>6. طرح شما حتما باید در حوزه زنجیره ارزش بنیاد مستضعفان باشد. لطفا پیش از پر کردن فرم، به صفحه اصلی سایت سر بزنید و کنترل کنید که آیا طرح شما در حوزه زنجیره ارزش بنیاد قرار دارد یا نه.</li>
+                        <li>7. رقبای‌تان را شناسایی کنید. معمولاً در همه زمینه‌ها کسانی هستند که قبل یا همزمان با شما شروع به کار کرده‌اند. در بیان مزیت‌های رقیب نسبت به شما و شما نسبت به رقیب، صادق باشید. عدم معرفی رقیب، یک امتیاز منفی بزرگ برای شما.</li>
+                        <li>8. سرمایه درخواستی برای طرح ارسالی باید کمتر از 200 میلیارد ریال باشد.</li>
+                        <li>9. شرکت توسعه دانش بنیان سینا طی مذاکرات آتی تا سقف 49 درصد از شرکت سرمایه پذیر سهام دریافت می کند.</li>
+                        <li>10. حداکثر زمان خروج سینا وی سی از شرکت سرمایه پذیر 5 سال می باشد.</li>
+                        <li>11. برای تکمیل بخش های مختلف فایل پیچ دک دقت کنید و وقت بگذارید. فراموش نکنید که پاسخ‌های دقیق و صادقانه‌ شما ملاک بررسی و انتخاب ماست. فراموش نکنید که این فایل، احتمالاً اولین نقطه‌ تماس سینا وی سی و شماست و روی قضاوت ما از شما تأثیر خواهد گذاشت. تکمیل بی‌دقت فایل، ممکن است مانع از آن شود که سینا وی سی برای آشنایی با ایده‌ خوب و اجرای فوق‌العاده‌ شما وقت مناسبی اختصاص دهد. پس به بهترین و دقیق‌ترین روشی که می‌توانید خود را به ما معرفی کنید!</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
