@@ -9,29 +9,29 @@
                 <div class="nav-align-top">
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
-                            <button type="button" class="nav-link d-flex flex-column gap-1 active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-home-card" aria-controls="navs-home-card" aria-selected="true"><i class="tf-icons mdi mdi-account-outline mdi-20px me-1"></i>اطلاعات کاربر </button>
+                            <button type="button" class="nav-link d-flex flex-column gap-1 active" role="tab"   data-bs-toggle="tab"    data-bs-target="#navs-user-card"           aria-controls="navs-user-card"          aria-selected="true"><i class="tf-icons mdi mdi-account-outline mdi-20px me-1"></i>اطلاعات کاربر </button>
                         </li>
                         <li class="nav-item">
-                            <button type="button" class="nav-link d-flex flex-column gap-1" role="tab" data-bs-toggle="tab" data-bs-target="#navs-profile-card" aria-controls="navs-profile-card" aria-selected="false"><i class="tf-icons mdi mdi-domain mdi-20px me-1"></i> اطلاعات شرکت </button>
+                            <button type="button" class="nav-link d-flex flex-column gap-1" role="tab"          data-bs-toggle="tab"    data-bs-target="#navs-co-profile-card"        aria-controls="navs-co-profile-card" aria-selected="false"><i class="tf-icons mdi mdi-domain mdi-20px me-1"></i> اطلاعات شرکت </button>
                         </li>
                         <li class="nav-item">
-                            <button type="button" class="nav-link d-flex flex-column gap-1" role="tab" data-bs-toggle="tab" data-bs-target="#navs-messages-card" aria-controls="navs-messages-card" aria-selected="false"><i class="tf-icons mdi mdi-clipboard-flow mdi-20px me-1"></i>فرایند سرمایه گذاری</button>
+                            <button type="button" class="nav-link d-flex flex-column gap-1" role="tab"          data-bs-toggle="tab"    data-bs-target="#navs-invest-card"    aria-controls="navs-invest-card"   aria-selected="false"><i class="tf-icons mdi mdi-clipboard-flow mdi-20px me-1"></i>فرایند سرمایه گذاری</button>
                         </li>
                         <li class="nav-item">
-                            <button type="button" class="nav-link d-flex flex-column gap-1" role="tab" data-bs-toggle="tab" data-bs-target="#navs-messages-card" aria-controls="navs-messages-card" aria-selected="false"><i class="tf-icons mdi mdi-folder-file mdi-20px me-1"></i>فایل ها و مستندات</button>
+                            <button type="button" class="nav-link d-flex flex-column gap-1" role="tab"          data-bs-toggle="tab"    data-bs-target="#navs-file-and-doc-card"   aria-controls="navs-file-and-doc-card"  aria-selected="false"><i class="tf-icons mdi mdi-folder-file mdi-20px me-1"></i>فایل ها و مستندات</button>
                         </li>
                         <li class="nav-item">
-                            <button type="button" class="nav-link d-flex flex-column gap-1" role="tab" data-bs-toggle="tab" data-bs-target="#navs-messages-card" aria-controls="navs-messages-card" aria-selected="false"><i class="tf-icons mdi mdi-message-text-outline mdi-20px me-1"></i> صورتجلسات </button>
+                            <button type="button" class="nav-link d-flex flex-column gap-1" role="tab"          data-bs-toggle="tab"    data-bs-target="#navs-minutes-card"        aria-controls="navs-minutes-card"       aria-selected="false"><i class="tf-icons mdi mdi-message-text-outline mdi-20px me-1"></i> صورتجلسات </button>
                         </li>
                         <li class="nav-item">
-                            <button type="button" class="nav-link d-flex flex-column gap-1" role="tab" data-bs-toggle="tab" data-bs-target="#navs-messages-card" aria-controls="navs-messages-card" aria-selected="false"><i class="tf-icons mdi mdi-comment-text-multiple mdi-20px me-1"></i>تعهدات و تضامین </button>
+                            <button type="button" class="nav-link d-flex flex-column gap-1" role="tab"          data-bs-toggle="tab"    data-bs-target="#navs-guarantee-card"      aria-controls="navs-guarantee-card"     aria-selected="false"><i class="tf-icons mdi mdi-comment-text-multiple mdi-20px me-1"></i>تعهدات و تضامین </button>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="card-body">
                 <div class="tab-content pb-0">
-                    <div class="tab-pane fade show active justify-content-center" id="navs-home-card" role="tabpanel">
+                    <div class="tab-pane fade show active justify-content-center" id="navs-user-card" role="tabpanel">
                         <div class="card mb-12 col-md-12">
                             <div class="card-body">
                                 <div class="user-avatar-section">
@@ -193,18 +193,42 @@
                         </div>
                         <!--/ Edit User Modal -->
 
-                        <div class="tab-pane fade" id="navs-profile-card" role="tabpanel">
+                        <div class="tab-pane fade" id="navs-company-card" role="tabpanel">
                             <h4 class="card-title">پروفایل</h4>
                             <p class="card-text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
                                 استفاده</p>
                             <a href="javascript:void(0)" class="btn btn-secondary">گزینه نمایشی</a>
                         </div>
-                        <div class="tab-pane fade" id="navs-messages-card" role="tabpanel">
+                        <div class="tab-pane fade" id="navs-invest-flow-card" role="tabpanel">
                             <h4 class="card-title">پیام ها</h4>
                             <p class="card-text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
                                 استفاده</p>
                             <a href="javascript:void(0)" class="btn btn-secondary">گزینه نمایشی</a>
                         </div>
+                    </div>
+                    <!-- اطلاعات شرکت -->
+                    <div class="tab-pane fade justify-content-center" id="navs-co-profile-card" role="tabpanel">
+                        محتوای تب اطلاعات شرکت
+                    </div>
+
+                    <!-- فرایند سرمایه گذاری -->
+                    <div class="tab-pane fade justify-content-center" id="navs-invest-card" role="tabpanel">
+                        محتوای تب فرایند سرمایه گذاری
+                    </div>
+
+                    <!-- فایل ها و مستندات -->
+                    <div class="tab-pane fade justify-content-center" id="navs-file-and-doc-card" role="tabpanel">
+                          محتوای تب فایل ها و مستندات
+                    </div>
+
+                    <!-- صورتجلسات -->
+                    <div class="tab-pane fade justify-content-center" id="navs-minutes-card" role="tabpanel">
+                        محتوای تب صورتجلسات
+                    </div>
+
+                    <!-- تعهدات و تضامین -->
+                    <div class="tab-pane fade justify-content-center" id="navs-guarantee-card" role="tabpanel">
+                       محتوای تب تعهدات و تضامین
                     </div>
                 </div>
             </div>
