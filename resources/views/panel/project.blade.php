@@ -119,54 +119,26 @@
                                 <label class="form-label">مبلغ درخواستی تایید شده</label>
                                 <input type="text" name="amount_request_accept" id="amount_request_accept" class="form-control" />
                             </div>
-{{--                            <div class="col-md-3">--}}
-{{--                                <label class="form-label">مبلغ واریز شده</label>--}}
-{{--                                <input type="text" name="amount_deposited" id="amount_deposited" class="form-control" />--}}
-{{--                            </div>--}}
                             <div class="col-md-4 mb-3">
                                 <label class="form-label">مبلغ تعهد مرحله اول</label>
                                 <input type="text" name="amount_commitment_first_stage" id="amount_commitment_first_stage" class="form-control" />
                             </div>
-{{--                            <div class="col-md-3">--}}
-{{--                                <label class="form-label">واریز قسط مرحله اول</label>--}}
-{{--                                <input type="text" name="first_stage_payment" id="first_stage_payment" class="form-control" />--}}
-{{--                            </div>--}}
                             <div class="col-md-4 mb-3">
                                 <label class="form-label">مبلغ تعهد مرحله دوم</label>
                                 <input type="text" name="amount_commitment_second_stage" id="amount_commitment_second_stage" class="form-control" />
                             </div>
-{{--                            <div class="col-md-3">--}}
-{{--                                <label class="form-label">واریز قسط مرحله دوم</label>--}}
-{{--                                <input type="text" name="second_stage_payment" id="second_stage_payment" class="form-control" />--}}
-{{--                            </div>--}}
                             <div class="col-md-4 mb-3">
                                 <label class="form-label">مبلغ تعهد مرحله سوم</label>
                                 <input type="text" name="amount_commitment_third_stage" id="amount_commitment_third_stage" class="form-control" />
                             </div>
-{{--                            <div class="col-md-3">--}}
-{{--                                <label class="form-label">واریز قسط مرحله سوم</label>--}}
-{{--                                <input type="text" name="third_stage_payment" id="third_stage_payment" class="form-control" />--}}
-{{--                            </div>--}}
                             <div class="col-md-4 mb-3">
                                 <label class="form-label">مبلغ تعهد مرحله چهارم</label>
                                 <input type="text" name="amount_commitment_fourth_stage" id="amount_commitment_fourth_stage" class="form-control" />
                             </div>
-{{--                            <div class="col-md-3">--}}
-{{--                                <label class="form-label">واریز قسط مرحله چهارم</label>--}}
-{{--                                <input type="text" name="fourth_stage_payment" id="fourth_stage_payment" class="form-control" />--}}
-{{--                            </div>--}}
                             <div class="col-md-4 mb-3">
                                 <label class="form-label">مبلغ تعهد مرحله پنجم</label>
                                 <input type="text" name="amount_commitment_fifth_stage" id="amount_commitment_fifth_stage" class="form-control" />
                             </div>
-{{--                            <div class="col-md-3">--}}
-{{--                                <label class="form-label">واریز قسط مرحله پنجم</label>--}}
-{{--                                <input type="text" name="fifth_stage_payment" id="fifth_stage_payment" class="form-control" />--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-4 mb-3">--}}
-{{--                                <label class="form-label">مانده تعهدات</label>--}}
-{{--                                <input type="text" name="commitment_balance" id="commitment_balance" class="form-control" />--}}
-{{--                            </div>--}}
                             <div class="col-md-12 mb-3">
                                 <label class="form-label">معرفی طرح</label>
                                 <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
@@ -190,7 +162,6 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
                     </div>
                     <div class="modal-body">
-{{--                        <form action="{{route(request()->segment(2).'.update' , $project->id)}}" id="editform_{{$project->id}}" method="POST" enctype="multipart/form-data">--}}
                             <form id="editform_{{ $project->id }}" method="POST" action="{{ route(request()->segment(2).'.update', $project->id) }}">
                                 @csrf
                                 @method('PATCH')
@@ -232,54 +203,26 @@
                                     <label class="form-label">مبلغ درخواستی تایید شده</label>
                                     <input type="text" name="amount_request_accept" id="amount_request_accept_{{$project->id}}" value="{{number_format($project->amount_request_accept)}}" class="form-control" />
                                 </div>
-{{--                                <div class="col-md-3 mb-3">--}}
-{{--                                    <label class="form-label">مبلغ واریز شده</label>--}}
-{{--                                    <input type="text" name="amount_deposited" id="amount_deposited_{{$project->id}}" value="{{number_format($project->amount_deposited)}}" class="form-control" />--}}
-{{--                                </div>--}}
                                 <div class="col-md-3 mb-3">
                                     <label class="form-label">مبلغ تعهد مرحله اول</label>
                                     <input type="text" name="amount_commitment_first_stage" id="amount_commitment_first_stage_{{$project->id}}" value="{{number_format($project->amount_commitment_first_stage)}}" class="form-control" />
                                 </div>
-{{--                                <div class="col-md-3">--}}
-{{--                                    <label class="form-label">واریز قسط مرحله اول</label>--}}
-{{--                                    <input type="text" name="first_stage_payment" id="first_stage_payment_{{$project->id}}" value="{{number_format($project->first_stage_payment)}}" class="form-control" />--}}
-{{--                                </div>--}}
                                 <div class="col-md-3 mb-3">
                                     <label class="form-label">مبلغ تعهد مرحله  دوم</label>
                                     <input type="text" name="amount_commitment_second_stage" id="amount_commitment_second_stage_{{$project->id}}" value="{{number_format($project->amount_commitment_second_stage)}}" class="form-control" />
                                 </div>
-{{--                                <div class="col-md-3">--}}
-{{--                                    <label class="form-label">واریز قسط مرحله دوم</label>--}}
-{{--                                    <input type="text" name="second_stage_payment" id="second_stage_payment_{{$project->id}}" value="{{number_format($project->second_stage_payment)}}" class="form-control" />--}}
-{{--                                </div>--}}
                                 <div class="col-md-3 mb-3">
                                     <label class="form-label">مبلغ تعهد مرحله  سوم</label>
                                     <input type="text" name="amount_commitment_third_stage" id="amount_commitment_third_stage_{{$project->id}}" value="{{number_format($project->amount_commitment_third_stage)}}" class="form-control" />
                                 </div>
-{{--                                <div class="col-md-3">--}}
-{{--                                    <label class="form-label">واریز قسط مرحله سوم</label>--}}
-{{--                                    <input type="text" name="third_stage_payment" id="third_stage_payment_{{$project->id}}" value="{{number_format($project->third_stage_payment)}}" class="form-control" />--}}
-{{--                                </div>--}}
                                 <div class="col-md-3 mb-3">
                                     <label class="form-label">مبلغ تعهد مرحله چهارم </label>
                                     <input type="text" name="amount_commitment_fourth_stage" id="amount_commitment_fourth_stage_{{$project->id}}" value="{{number_format($project->amount_commitment_fourth_stage)}}" class="form-control" />
                                 </div>
-{{--                                <div class="col-md-3">--}}
-{{--                                    <label class="form-label">واریز قسط مرحله چهارم</label>--}}
-{{--                                    <input type="text" name="fourth_stage_payment" id="fourth_stage_payment_{{$project->id}}" value="{{number_format($project->fourth_stage_payment)}}" class="form-control" />--}}
-{{--                                </div>--}}
                                 <div class="col-md-3 mb-3">
                                     <label class="form-label">مبلغ تعهد مرحله  پنجم</label>
                                     <input type="text" name="amount_commitment_fifth_stage" id="amount_commitment_fifth_stage_{{$project->id}}" value="{{number_format($project->amount_commitment_fifth_stage)}}" class="form-control" />
                                 </div>
-{{--                                <div class="col-md-3">--}}
-{{--                                    <label class="form-label">واریز قسط مرحله پنجم</label>--}}
-{{--                                    <input type="text" name="fifth_stage_payment" id="fifth_stage_payment_{{$project->id}}" value="{{number_format($project->fifth_stage_payment)}}" class="form-control" />--}}
-{{--                                </div>--}}
-{{--                                <div class="col-md-3 mb-3">--}}
-{{--                                    <label class="form-label">مانده تعهدات</label>--}}
-{{--                                    <input type="text" name="commitment_balance" id="commitment_balance_{{$project->id}}" value="{{number_format($project->commitment_balance)}}" class="form-control" />--}}
-{{--                                </div>--}}
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">لوگو شرکت</label>
                                     <div class="input-group mb-3">
@@ -303,7 +246,7 @@
             </div>
         </div>
     @endforeach
-    <!-- Edit Modal -->
+    <!-- Profile Modal -->
     @foreach($projects as $project)
         <div class="modal fade" id="showModal{{ $project->id }}" tabindex="-1" aria-labelledby="editModalLabel{{$project->id}}" aria-hidden="true">
             <div class="modal-dialog modal-xl">
@@ -918,9 +861,8 @@
             </div>
         </div>
     @endforeach
-
+    <!-- Media Modal -->
     @foreach($projects as $project)
-
         <div class="modal fade" id="uploadModal{{ $project->id }}" tabindex="-1" aria-labelledby="uploadModalLabel{{ $project->id }}" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -944,7 +886,6 @@
             </div>
         </div>
     </div>
-
          <div class="modal fade" id="showModal{{ $project->id }}" tabindex="-1" aria-labelledby="showModalLabel{{ $project->id }}" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
@@ -953,23 +894,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
                     </div>
                     <div class="modal-body text-center" id="previewContent">
-                        <!-- فایل پیش نمایش اینجا لود می‌شود -->
                     </div>
                 </div>
             </div>
         </div>
     @endforeach
-
-{{--    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 2000">--}}
-{{--        <div id="mainToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">--}}
-{{--            <div class="d-flex">--}}
-{{--                <div class="toast-body">--}}
-{{--                    عملیات با موفقیت انجام شد!--}}
-{{--                </div>--}}
-{{--                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
 
 @endsection
 @section('script')
@@ -977,7 +906,6 @@
     <script src="{{asset('assets/vendor/js/sweetalert2.js')}}"></script>
     <script src="{{asset('assets/vendor/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{'https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js'}}"></script>
-{{--    <script src="https://cdn.datatables.net/plug-ins/1.13.5/i18n/fa.json"></script>--}}
 
     <script type="text/javascript">
         $(function () {
