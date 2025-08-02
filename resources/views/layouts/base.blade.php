@@ -48,7 +48,7 @@
     <script src="{{ asset('assets/js/config.js') }}"></script>
 
     @yield('style')
-
+    @stack('styles')
 </head>
 <!-- Debug -->
 
