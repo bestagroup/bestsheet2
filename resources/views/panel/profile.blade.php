@@ -222,7 +222,7 @@
                         ];
                     @endphp
 
-                    <div class="tab-pane fade show active" id="navs-co-profile-card" role="tabpanel">
+                    <div class="tab-pane fade justify-content-center" id="navs-co-profile-card" role="tabpanel">
                         {{-- نمایش کارت اطلاعات شرکت --}}
                         <div id="companyProfileCard" class="{{ $hasProfile ? '' : 'd-none' }}">
                             <div class="card border-0 shadow-sm mb-4" style="max-width:480px; margin:0 auto; border-radius: 1.25rem; background:rgba(255,255,255,0.94);">
@@ -267,14 +267,218 @@
 
                         {{-- فرم ویرایش اطلاعات شرکت (در حالت عادی مخفی) --}}
                         <div id="companyEditForm" class="{{ $hasProfile ? 'd-none' : '' }}">
-                            @include('partials.company_profile_form', ['profile' => $profile])
+                            @include('profile.company_profile_form', ['profile' => $profile])
                         </div>
                     </div>
 
 
                     <!-- فرایند سرمایه گذاری -->
                     <div class="tab-pane fade justify-content-center" id="navs-invest-card" role="tabpanel">
-                        محتوای تب فرایند سرمایه گذاری
+                        @php
+                            $steps = [
+                                [
+                                    'title'   => 'بررسی اولیه',
+                                    'desc'    => 'مدارک اولیه طرح را بارگذاری نمایید. اطلاعات اولیه باید کامل باشد.',
+                                    'content' => '
+                                        <form>
+                                            <div class="mb-3">
+                                                <label class="form-label">آپلود معرفی‌نامه یا پروپوزال</label>
+                                                <input type="file" class="form-control">
+                                            </div>
+                                            <button class="btn btn-primary">ارسال</button>
+                                        </form>
+                                    '
+                                ],
+                                [
+                                    'title'   => 'غربالگری',
+                                    'desc'    => 'اطلاعات تکمیلی طرح و بررسی اولیه توسط کارشناسان انجام می‌شود.',
+                                    'content' => '
+                                        <form>
+                                            <div class="mb-3">
+                                                <label class="form-label">حوزه فعالیت</label>
+                                                <input type="text" class="form-control" placeholder="مثال: فناوری اطلاعات">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">سابقه فعالیت</label>
+                                                <input type="text" class="form-control" placeholder="مدت و توضیح سابقه">
+                                            </div>
+                                            <button class="btn btn-primary">ذخیره اطلاعات</button>
+                                        </form>
+                                    '
+                                ],
+                                [
+                                    'title'   => 'ارزیابی اولیه',
+                                    'desc'    => 'در این مرحله تیم ارزیاب، طرح را از نظر امکان‌پذیری و نوآوری بررسی می‌کند.',
+                                    'content' => '
+                                        <form>
+                                            <div class="mb-3">
+                                                <label class="form-label">امتیاز نوآوری (۰ تا ۱۰)</label>
+                                                <input type="number" class="form-control" min="0" max="10">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">امتیاز تیم (۰ تا ۱۰)</label>
+                                                <input type="number" class="form-control" min="0" max="10">
+                                            </div>
+                                            <button class="btn btn-primary">ثبت امتیاز</button>
+                                        </form>
+                                    '
+                                ],
+                                [
+                                    'title'   => 'ارزیابی موشکافانه',
+                                    'desc'    => 'مدارک مالی و فنی به صورت دقیق بررسی و بارگذاری می‌شود.',
+                                    'content' => '
+                                        <form>
+                                            <div class="mb-3">
+                                                <label class="form-label">آپلود صورت‌های مالی</label>
+                                                <input type="file" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">آپلود گزارش فنی یا محصول</label>
+                                                <input type="file" class="form-control">
+                                            </div>
+                                            <button class="btn btn-primary">ارسال مدارک</button>
+                                        </form>
+                                    '
+                                ],
+                                [
+                                    'title'   => 'تائیدیه مدیرعامل سینا وی‌سی',
+                                    'desc'    => 'منتظر تائید مدیرعامل سینا وی‌سی جهت ادامه فرایند.',
+                                    'content' => '
+                                        <div class="alert alert-info">در حال بررسی توسط مدیرعامل سینا وی‌سی...</div>
+                                    '
+                                ],
+                                [
+                                    'title'   => 'تائیدیه مدیرعامل دانشمند',
+                                    'desc'    => 'تائیدیه مدیرعامل دانشمند برای عبور از این مرحله ضروری است.',
+                                    'content' => '
+                                        <div class="alert alert-info">در حال بررسی توسط مدیرعامل دانشمند...</div>
+                                    '
+                                ],
+                                [
+                                    'title'   => 'تصویب هیئت مدیره سینا وی‌سی',
+                                    'desc'    => 'طرح در جلسه هیئت مدیره سینا وی‌سی مطرح و تصویب می‌شود.',
+                                    'content' => '
+                                        <div class="alert alert-info">منتظر برگزاری جلسه هیئت مدیره...</div>
+                                    '
+                                ],
+                                [
+                                    'title'   => 'ارزش‌گذاری',
+                                    'desc'    => 'در این مرحله، ارزش‌گذاری شرکت و میزان سرمایه پیشنهادی مشخص می‌شود.',
+                                    'content' => '
+                                        <form>
+                                            <div class="mb-3">
+                                                <label class="form-label">مبلغ سرمایه پیشنهادی (تومان)</label>
+                                                <input type="number" class="form-control" placeholder="مبلغ به تومان">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">درصد سهام پیشنهادی</label>
+                                                <input type="number" class="form-control" placeholder="درصد">
+                                            </div>
+                                            <button class="btn btn-primary">ثبت ارزش‌گذاری</button>
+                                        </form>
+                                    '
+                                ],
+                                [
+                                    'title'   => 'ارائه در کمیته ارزش‌گذاری',
+                                    'desc'    => 'خروجی ارزش‌گذاری به کمیته مربوطه ارائه می‌شود و منتظر تایید است.',
+                                    'content' => '
+                                        <div class="alert alert-info">ارائه در کمیته ارزش‌گذاری در حال انجام است...</div>
+                                    '
+                                ],
+                                [
+                                    'title'   => 'توافق قراردادی',
+                                    'desc'    => 'بررسی مفاد قرارداد بین طرفین انجام می‌پذیرد.',
+                                    'content' => '
+                                        <form>
+                                            <div class="mb-3">
+                                                <label class="form-label">بارگذاری پیش‌نویس قرارداد</label>
+                                                <input type="file" class="form-control">
+                                            </div>
+                                            <button class="btn btn-primary">بارگذاری</button>
+                                        </form>
+                                    '
+                                ],
+                                [
+                                    'title'   => 'تصویب قرارداد',
+                                    'desc'    => 'قرارداد نهایی جهت تصویب به کمیته ارسال می‌شود.',
+                                    'content' => '
+                                        <div class="alert alert-info">منتظر تایید کمیته قرارداد...</div>
+                                    '
+                                ],
+                                [
+                                    'title'   => 'عقد قرارداد',
+                                    'desc'    => 'در این مرحله، قرارداد به صورت رسمی امضا و مبادله می‌شود.',
+                                    'content' => '
+                                        <div class="alert alert-success">قرارداد با موفقیت منعقد شد.</div>
+                                    '
+                                ],
+                                [
+                                    'title'   => 'پایان دوره ارزش‌آفرینی',
+                                    'desc'    => 'دوره ارزش‌آفرینی پایان یافته و گزارش عملکرد باید ارسال شود.',
+                                    'content' => '
+                                        <form>
+                                            <div class="mb-3">
+                                                <label class="form-label">آپلود گزارش نهایی عملکرد</label>
+                                                <input type="file" class="form-control">
+                                            </div>
+                                            <button class="btn btn-primary">ارسال گزارش</button>
+                                        </form>
+                                    '
+                                ],
+                                [
+                                    'title'   => 'خروج از طرح',
+                                    'desc'    => 'فرآیند سرمایه‌گذاری به پایان رسیده است.',
+                                    'content' => '
+                                        <div class="alert alert-success">شما از طرح با موفقیت خارج شده‌اید. تبریک!</div>
+                                    '
+                                ],
+                            ];
+                        @endphp
+
+                        @php
+                            $currentStep = 0; // مرحله فعلی را دستی یا از دیتابیس مقدار بده
+                        @endphp
+
+                        <div class="row" style="direction:rtl;">
+                            <!-- Stepper -->
+                            <div class="col-md-4">
+                                <ul class="list-group list-group-flush p-0" style="border-radius:1.1rem; background:#fff;">
+                                    @foreach($steps as $idx => $step)
+                                        <li class="list-group-item py-3 d-flex align-items-center gap-2"
+                                            style="background:transparent; border:none;">
+                    <span class="rounded-circle d-inline-flex justify-content-center align-items-center"
+                          style="width:32px;height:32px;
+                                background:{{ $idx < $currentStep ? '#e8f5e9' : ($idx === $currentStep ? '#e3e0fa' : '#f3f3f7') }};
+                                color:{{ $idx < $currentStep ? '#4caf50' : ($idx === $currentStep ? '#7367f0' : '#bbb') }};
+                                font-weight:bold;">
+                        {{ $idx + 1 }}
+                    </span>
+                                            <span class="{{ $idx === $currentStep ? 'fw-bold text-dark' : 'text-muted' }}">
+                        {{ $step['title'] }}
+                    </span>
+                                            @if($idx === $currentStep)
+                                                <span class="badge bg-primary ms-auto">در جریان</span>
+                                            @elseif($idx < $currentStep)
+                                                <i class="mdi mdi-check-circle-outline text-success ms-auto"></i>
+                                            @endif
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+
+                            <!-- جزئیات مرحله فعال -->
+                            <div class="col-md-8">
+                                <div class="card shadow-sm" style="min-height:260px;">
+                                    <div class="card-body">
+                                        <h6 class="fw-bold mb-3">{{ $steps[$currentStep]['title'] }}</h6>
+                                        <div class="text-muted mb-3">{{ $steps[$currentStep]['desc'] }}</div>
+                                        {!! $steps[$currentStep]['content'] !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
 
                     <!-- فایل ها و مستندات -->
