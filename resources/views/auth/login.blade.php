@@ -5,23 +5,18 @@
 @section('content')
     <div class="authentication-wrapper authentication-basic container-p-y">
         <div class="authentication-inner py-4">
-            <!-- Login -->
             <div class="card p-2">
-                <!-- Logo -->
                 <div class="app-brand justify-content-center mt-5">
                     <a href="{{ url('/') }}" class="app-brand-link gap-2">
-          <span class="app-brand-logo demo">
-            <img src="{{ asset('assets/img/sinavclogo.png') }}" alt="توسعه دانش بنیان سینا" width="40">
-          </span>
+                        <span class="app-brand-logo demo">
+                          <img src="{{ asset('assets/img/sinavclogo.png') }}" alt="توسعه دانش بنیان سینا" width="40">
+                        </span>
                         <span class="app-brand-text demo text-heading fw-bold">توسعه دانش بنیان سینا</span>
                     </a>
                 </div>
-                <!-- /Logo -->
-
                 <div class="card-body mt-2">
                     <h4 class="mb-2 fw-semibold">بستر ارزیابی اطلاعات سازمان‌ یافته‌ی تجاری </h4>
                     <p class="mb-4 text-center">(بِست شیت)</p>
-
                     <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
                         @csrf
                         <div class="form-floating form-floating-outline mb-3">
@@ -39,7 +34,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="mb-3 d-flex justify-content-between">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="remember-me" name="remember">
@@ -47,21 +41,18 @@
                             </div>
                             <a href="{{ route('password.request') }}">فراموشی رمز عبور؟</a>
                         </div>
-
                         <div class="mb-3">
                             <button class="btn btn-primary d-grid w-100" type="submit">ورود</button>
                         </div>
                     </form>
-
                     <p class="text-center">
-                        <span>کاربر جدید هستید؟</span>
+
                         <a href="{{ route('register') }}">
-                            <span>ثبت نام کنید</span>
+                            <span>برای ایجاد حساب و ثبت طرح کلیک کنید</span>
                         </a>
                     </p>
                 </div>
             </div>
-            <!-- /Login -->
         </div>
     </div>
 @endsection
@@ -72,7 +63,6 @@
             const togglePassword = document.querySelector('.form-password-toggle .input-group-text');
             const passwordInput = document.querySelector('#password');
             const icon = togglePassword.querySelector('i');
-
             togglePassword.addEventListener('click', function () {
                 const type = passwordInput.type === 'password' ? 'text' : 'password';
                 passwordInput.type = type;

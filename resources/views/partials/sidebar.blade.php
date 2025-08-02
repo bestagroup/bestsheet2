@@ -94,20 +94,12 @@
             <li class="menu-item {{ $isActive }}">
                 <a class="menu-link d-flex align-items-center {{ $isToggle ? 'menu-toggle' : '' }}"
                    href="{{ $isToggle ? 'javascript:void(0);' : url($menupanel->slug) }}">
-
-                    {{-- آیکون --}}
                     <i class="menu-icon tf-icons mdi {{ $menupanel->icon }} ms-2"></i>
-
-                    {{-- عنوان منو --}}
                     <div class="flex-grow-1">{{ $menupanel->label }}</div>
-
-                    {{-- badge اختیاری --}}
                     @if(!empty($menupanel->badge))
                         <div class="badge bg-primary rounded-pill ms-auto">{{ $menupanel->badge }}</div>
                     @endif
                 </a>
-
-                {{-- زیرمنوها --}}
                 @if($isToggle)
                     <ul class="menu-sub px-2">
                         @foreach($menupanel->accessible_submenus as $submenu)
@@ -124,6 +116,5 @@
                 @endif
             </li>
         @endforeach
-
     </ul>
 </aside>
