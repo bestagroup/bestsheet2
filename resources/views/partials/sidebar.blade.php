@@ -22,67 +22,6 @@
     <div class="menu-inner-shadow"></div>
     <ul class="menu-inner py-1">
 
-
-{{--        @foreach ($menupanels as $menupanel)
-            @php
-                // زیرمنوهای مرتبط به منوی اصلی
-                $subs = $submenupanels->where('menu_id', $menupanel->id);
-                // زیرمنوهایی که کاربر دسترسی view بهشون داره
-                $accessibleSubs = $subs->filter(fn($sub) => Gate::allows('can-access', [$sub->slug, 'view']));
-                // آیا دسترسی به حداقل یک زیرمنو وجود داره؟
-                $hasAccess = $accessibleSubs->isNotEmpty();
-                // آیا یکی از زیرمنوها در حال حاضر فعال است؟
-                $isActive = $accessibleSubs->contains(fn($sub) => request()->segment(2) === $sub->slug);
-            @endphp
-
-            @if($hasAccess)
-                <li class="menu-item {{ $isActive ? 'active open' : '' }}">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons mdi {{ $menupanel->icon }}"></i>
-                        <div>{{ $menupanel->label }}</div>
-                    </a>
-                    <ul class="menu-sub">
-                        @foreach ($accessibleSubs as $submenupanel)
-                            <li class="menu-item {{ request()->segment(2) === $submenupanel->slug ? 'active' : '' }}">
-                                <a href="{{ url('panel/' . $submenupanel->slug) }}" class="menu-link">
-                                    <div>{{ $submenupanel->label }}</div>
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </li>
-            @endif
-        @endforeach--}}
-
-{{--        @foreach ($menupanels as $menupanel)--}}
-{{--            @php--}}
-{{--                // زیرمنوهایی که کاربر به آن‌ها دسترسی دارد--}}
-{{--                $accessibleSubs = $menupanel->submenus->filter(fn($sub) => Gate::allows('can-access', [$sub->slug, 'view']));--}}
-
-{{--                // آیا حداقل یکی از زیرمنوها فعال است؟--}}
-{{--                $isActive = $accessibleSubs->contains(fn($sub) => request()->segment(2) === $sub->slug);--}}
-{{--            @endphp--}}
-
-{{--            @if ($accessibleSubs->isNotEmpty())--}}
-{{--                <li class="menu-item {{ $isActive ? 'active open' : '' }}">--}}
-{{--                    <a href="javascript:void(0);" class="menu-link menu-toggle">--}}
-{{--                        <i class="menu-icon tf-icons mdi {{ $menupanel->icon }}"></i>--}}
-{{--                        <div>{{ $menupanel->label }}</div>--}}
-{{--                    </a>--}}
-{{--                    <ul class="menu-sub">--}}
-{{--                        @foreach ($accessibleSubs as $submenupanel)--}}
-{{--                            <li class="menu-item {{ request()->segment(2) === $submenupanel->slug ? 'active' : '' }}">--}}
-{{--                                <a href="{{ url('panel/' . $submenupanel->slug) }}" class="menu-link">--}}
-{{--                                    <div>{{ $submenupanel->label }}</div>--}}
-{{--                                </a>--}}
-{{--                            </li>--}}
-{{--                        @endforeach--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
-{{--            @endif--}}
-{{--        @endforeach--}}
-
-
         @foreach($menupanels as $menupanel)
             @php
                 $hasVisibleSubmenus = $menupanel->accessible_submenus->filter(fn($submenu) =>
