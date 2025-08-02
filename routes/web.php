@@ -28,7 +28,6 @@ Route::middleware('admin')->namespace('App\Http\Controllers\Panel')->group(funct
 
     Route::get('panel/changepassword'      , 'ChangePasswordController@index')->name('password.change.form');
     Route::post('panel/changepassword'     , 'ChangePasswordController@change')->name('password.change.submit');
-    Route::post('panel/fullregister'       , 'FullregisterController@change')->name('fullregister');
 
     Route::post('panel/store'              , 'FilemanagerController@store')     ->name('storemedia');
     Route::get('panel/selectfile'          , 'FilemanagerController@selectfile')->name('selectfile');
@@ -92,5 +91,4 @@ Auth::routes();
 //Route::view('/panel/file-management'            , 'panel.file_management')          ->name('panel.file_management');
 //Route::view('/panel/file-management'            , 'panel.file_management')          ->name('panel.file_management');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::post('panel/fullregister', [App\Http\Controllers\Auth\FullregisterController::class, 'register'])->name('fullregister');
