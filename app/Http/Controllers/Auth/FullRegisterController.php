@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 class FullRegisterController extends Controller
 {
@@ -56,11 +57,16 @@ class FullRegisterController extends Controller
 
             DB::commit();
 
-            return redirect()->route('dashboard')->with('success', 'ثبت‌نام با موفقیت انجام شد');
+            return redirect()->route('profile')->with('success', 'ثبت ‌نام با موفقیت انجام شد');
 
         } catch (\Exception $e) {
             DB::rollBack();
             return back()->withErrors(['error' => 'خطا در ذخیره اطلاعات. لطفاً دوباره تلاش کنید.']);
         }
+    }
+
+    public function logout(){
+        Auth::logout();
+        return Redirect::to('/login');
     }
 }

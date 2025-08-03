@@ -25,7 +25,9 @@
         @foreach($menupanels as $menupanel)
             @php
                 $hasVisibleSubmenus = $menupanel->accessible_submenus->filter(fn($submenu) =>
-                    Gate::allows('can-access', [$submenu->slug, 'view']))->isNotEmpty();
+                Gate::allows('can-access', [$submenu->slug, 'view']))->isNotEmpty();
+                $shouldDisplay = $menupanel->is_public || $hasVisibleSubmenus || Gate::allows('can-access', [$menupanel->slug, 'view']);
+                if (!$shouldDisplay) continue;
                 $isActive = $menupanel->is_active ? 'active open bg-red' : '';
                 $isToggle = $menupanel->submenu == 1 && $hasVisibleSubmenus;
             @endphp

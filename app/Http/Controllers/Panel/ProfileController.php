@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -19,6 +20,9 @@ class ProfileController extends Controller
             'delete'  => 'حذف حساب کاربری',
         ];
 
-        return view('panel.profile')->with(compact('thispage'));
+
+        $projects = Auth::user()->project;
+
+        return view('panel.profile')->with(compact('thispage' , 'projects'));
     }
 }

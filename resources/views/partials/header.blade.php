@@ -106,7 +106,7 @@
           </li>
             <script>
                 function submitLogout(event) {
-                    event.preventDefault(); // جلوگیری از رفتار پیش‌فرض لینک
+                    event.preventDefault();
 
                     const form = document.createElement('form');
                     form.method = 'POST';

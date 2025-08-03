@@ -108,7 +108,13 @@ trait AuthenticatesUsers
      */
     protected function authenticated(Request $request, $user)
     {
-        //
+        if ($user->level === 'admin') {
+            return redirect()->route('dashboard');
+        }
+        if ($user->level === 'investor') {
+            return redirect()->route('profile');
+        }
+        return redirect()->route('profile');
     }
 
     /**

@@ -98,6 +98,9 @@ class User extends Authenticatable
             ->where('status', true)
             ->latestOfMany();
     }
-
+    public function project()
+    {
+        return $this->hasOne(Project::class);
+    }
 
 }

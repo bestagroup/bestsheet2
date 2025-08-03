@@ -25,15 +25,14 @@ Route::middleware('admin')->namespace('App\Http\Controllers\Panel')->group(funct
     Route::resource('panel/receivemanage', 'ReceiveController');
     Route::resource('panel/account'      , 'AccountController');
     Route::resource('panel/calendar'     , 'CalendarController');
-    Route::resource('profile'            , 'ProfileController');
 
+    Route::get('profile'                   , 'ProfileController@index')->name('profile');
     Route::get('panel/changepassword'      , 'ChangePasswordController@index')->name('password.change.form');
     Route::post('panel/changepassword'     , 'ChangePasswordController@change')->name('password.change.submit');
 
     Route::post('panel/store'              , 'FilemanagerController@store')     ->name('storemedia');
     Route::get('panel/selectfile'          , 'FilemanagerController@selectfile')->name('selectfile');
     Route::delete('panel/deletefile'       , 'FilemanagerController@deletefile')->name('deletefile');
-
 
     /*charts*/
     Route::get('panel/invest-month'          , 'ChartController@invest')->name('invest-month');
@@ -93,3 +92,5 @@ Auth::routes();
 //Route::view('/panel/file-management'            , 'panel.file_management')          ->name('panel.file_management');
 
 Route::post('panel/fullregister', [App\Http\Controllers\Auth\FullregisterController::class, 'register'])->name('fullregister');
+Route::get('logout'             , [App\Http\Controllers\Auth\FullregisterController::class, 'logout'])->name('logout');
+Route::post('logout'            , [App\Http\Controllers\Auth\FullregisterController::class, 'logout'])->name('logout');

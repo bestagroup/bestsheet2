@@ -288,25 +288,19 @@
                     <div class="tab-pane fade justify-content-center" id="navs-co-profile-card" role="tabpanel">
                         {{-- نمایش کارت اطلاعات شرکت --}}
                         <div id="companyProfileCard" class="{{ $hasProfile ? '' : 'd-none' }}">
-                            <div class="card border-0 shadow-sm mb-4"
-                                 style="max-width:480px; margin:0 auto; border-radius: 1.25rem; background:rgba(255,255,255,0.94);">
+                            <div class="card border-0 shadow-sm mb-4" style="max-width:480px; margin:0 auto; border-radius: 1.25rem; background:rgba(255,255,255,0.94);">
                                 <div class="card-body p-4">
                                     <div class="d-flex align-items-center justify-content-between mb-3">
                                         <div class="d-flex align-items-center gap-3">
-                                            <div
-                                                class="rounded-circle d-flex justify-content-center align-items-center shadow-sm"
-                                                style="width:56px; height:56px; background:#f2f3f6;">
+                                            <div class="rounded-circle d-flex justify-content-center align-items-center shadow-sm" style="width:56px; height:56px; background:#f2f3f6;">
                                                 <i class="mdi mdi-domain" style="font-size:2rem; color:#696cff"></i>
                                             </div>
                                             <div>
-                                                <div class="fw-bold mb-1"
-                                                     style="font-size:1.2rem;">{{ $profile['company_name'] }}</div>
-                                                <div class="small text-secondary" dir="ltr"
-                                                     style="font-size:0.95rem;">{{ $profile['website'] }}</div>
+                                                <div class="fw-bold mb-1" style="font-size:1.2rem;">{{ $profile['company_name'] }}</div>
+                                                <div class="small text-secondary" dir="ltr" style="font-size:0.95rem;">{{ $profile['website'] }}</div>
                                             </div>
                                         </div>
-                                        <button class="btn btn-sm btn-outline-primary rounded-pill px-3"
-                                                onclick="toggleEditMode()" style="font-size:.98rem">
+                                        <button class="btn btn-sm btn-outline-primary rounded-pill px-3" onclick="toggleEditMode()" style="font-size:.98rem">
                                             <i class="mdi mdi-pencil-outline"></i>
                                             <span class="d-none d-md-inline">ویرایش</span>
                                         </button>
@@ -314,33 +308,29 @@
 
                                     <dl class="row mb-0" style="font-size:1.01rem;">
                                         <dt class="col-5 text-secondary fw-normal text-end pb-1">شماره ثبت:</dt>
-                                        <dd class="col-7 mb-2 text-dark">{{ $profile['registration_number'] }}</dd>
+                                        <dd class="col-7 mb-2 text-dark">{{ $projects->title }}</dd>
 
                                         <dt class="col-5 text-secondary fw-normal text-end pb-1">شناسه ملی:</dt>
-                                        <dd class="col-7 mb-2 text-dark">{{ $profile['national_id'] }}</dd>
+                                        <dd class="col-7 mb-2 text-dark">{{ $projects->company_id }}</dd>
 
                                         <dt class="col-5 text-secondary fw-normal text-end pb-1">تلفن:</dt>
-                                        <dd class="col-7 mb-2 text-dark" dir="ltr"
-                                            style="font-family:monospace">{{ $profile['company_phone'] }}</dd>
+                                        <dd class="col-7 mb-2 text-dark" dir="ltr" style="font-family:monospace">{{ $projects->company_tel }}</dd>
 
                                         <dt class="col-5 text-secondary fw-normal text-end pb-1">ایمیل:</dt>
-                                        <dd class="col-7 mb-2 text-dark" dir="ltr"
-                                            style="font-family:monospace">{{ $profile['company_email'] }}</dd>
+                                        <dd class="col-7 mb-2 text-dark" dir="ltr" style="font-family:monospace">{{ $projects->company_email }}</dd>
 
                                         <dt class="col-5 text-secondary fw-normal text-end pb-1">آدرس:</dt>
-                                        <dd class="col-7 mb-1 text-dark">{{ $profile['company_address'] }}</dd>
+                                        <dd class="col-7 mb-1 text-dark">{{ $projects->company_address }}</dd>
                                     </dl>
                                 </div>
                             </div>
                         </div>
-
 
                         {{-- فرم ویرایش اطلاعات شرکت (در حالت عادی مخفی) --}}
                         <div id="companyEditForm" class="{{ $hasProfile ? 'd-none' : '' }}">
                             @include('profile.company_profile_form', ['profile' => $profile])
                         </div>
                     </div>
-
 
                     <!-- فرایند سرمایه گذاری -->
                     <div class="tab-pane fade justify-content-center" id="navs-invest-card" role="tabpanel">
@@ -352,7 +342,7 @@
                                     'content' => '
                                         <form>
                                             <div class="mb-3">
-                                                <label class="form-label">آپلود معرفی‌نامه یا پروپوزال</label>
+                                                <label class="form-label">آپلود فایل پیچ دک</label>
                                                 <input type="file" class="form-control">
                                             </div>
                                             <button class="btn btn-primary">ارسال</button>
@@ -411,14 +401,14 @@
                                     '
                                 ],
                                 [
-                                    'title'   => 'تائیدیه مدیرعامل سینا وی‌سی',
+                                    'title'   => 'تائیدیه مدیرعامل و هیئت مدیره سینا وی سی',
                                     'desc'    => 'منتظر تائید مدیرعامل سینا وی‌سی جهت ادامه فرایند.',
                                     'content' => '
                                         <div class="alert alert-info">در حال بررسی توسط مدیرعامل سینا وی‌سی...</div>
                                     '
                                 ],
                                 [
-                                    'title'   => 'تائیدیه مدیرعامل دانشمند',
+                                    'title'   => 'تائیدیه مدیرعامل و هیئت مدیره دانشمند',
                                     'desc'    => 'تائیدیه مدیرعامل دانشمند برای عبور از این مرحله ضروری است.',
                                     'content' => '
                                         <div class="alert alert-info">در حال بررسی توسط مدیرعامل دانشمند...</div>
@@ -449,7 +439,7 @@
                                     '
                                 ],
                                 [
-                                    'title'   => 'ارائه در کمیته ارزش‌گذاری',
+                                    'title'   => 'ارائه در کمیته ارزش‌ گذاری',
                                     'desc'    => 'خروجی ارزش‌گذاری به کمیته مربوطه ارائه می‌شود و منتظر تایید است.',
                                     'content' => '
                                         <div class="alert alert-info">ارائه در کمیته ارزش‌گذاری در حال انجام است...</div>
@@ -469,7 +459,7 @@
                                     '
                                 ],
                                 [
-                                    'title'   => 'تصویب قرارداد',
+                                    'title'   => 'تصویب قرارداد در هیئت میره سینا وی سی',
                                     'desc'    => 'قرارداد نهایی جهت تصویب به کمیته ارسال می‌شود.',
                                     'content' => '
                                         <div class="alert alert-info">منتظر تایید کمیته قرارداد...</div>
@@ -483,7 +473,7 @@
                                     '
                                 ],
                                 [
-                                    'title'   => 'پایان دوره ارزش‌آفرینی',
+                                    'title'   => 'پایان دوره ارزش‌ آفرینی',
                                     'desc'    => 'دوره ارزش‌آفرینی پایان یافته و گزارش عملکرد باید ارسال شود.',
                                     'content' => '
                                         <form>
@@ -506,28 +496,24 @@
                         @endphp
 
                         @php
-                            $currentStep = 0; // مرحله فعلی را دستی یا از دیتابیس مقدار بده
+                            $currentStep = 0;
                         @endphp
 
                         <div class="row" style="direction:rtl;">
-                            <!-- Stepper -->
                             <div class="col-md-4">
-                                <ul class="list-group list-group-flush p-0"
-                                    style="border-radius:1.1rem; background:#fff;">
+                                <ul class="list-group list-group-flush p-0" style="border-radius:1.1rem; background:#fff;">
                                     @foreach($steps as $idx => $step)
-                                        <li class="list-group-item py-3 d-flex align-items-center gap-2"
-                                            style="background:transparent; border:none;">
-                    <span class="rounded-circle d-inline-flex justify-content-center align-items-center"
-                          style="width:32px;height:32px;
-                                background:{{ $idx < $currentStep ? '#e8f5e9' : ($idx === $currentStep ? '#e3e0fa' : '#f3f3f7') }};
-                                color:{{ $idx < $currentStep ? '#4caf50' : ($idx === $currentStep ? '#7367f0' : '#bbb') }};
-                                font-weight:bold;">
-                        {{ $idx + 1 }}
-                    </span>
-                                            <span
-                                                class="{{ $idx === $currentStep ? 'fw-bold text-dark' : 'text-muted' }}">
-                        {{ $step['title'] }}
-                    </span>
+                                        <li class="list-group-item py-3 d-flex align-items-center gap-2" style="background:transparent; border:none;">
+                                            <span class="rounded-circle d-inline-flex justify-content-center align-items-center"
+                                                  style="width:32px;height:32px;
+                                                        background:{{ $idx < $currentStep ? '#e8f5e9' : ($idx === $currentStep ? '#e3e0fa' : '#f3f3f7') }};
+                                                        color:{{ $idx < $currentStep ? '#4caf50' : ($idx === $currentStep ? '#7367f0' : '#bbb') }};
+                                                        font-weight:bold;">
+                                                {{ $idx + 1 }}
+                                            </span>
+                                            <span class="{{ $idx === $currentStep ? 'fw-bold text-dark' : 'text-muted' }}">
+                                                {{ $step['title'] }}
+                                            </span>
                                             @if($idx === $currentStep)
                                                 <span class="badge bg-primary ms-auto">در جریان</span>
                                             @elseif($idx < $currentStep)
@@ -537,7 +523,6 @@
                                     @endforeach
                                 </ul>
                             </div>
-
                             <!-- جزئیات مرحله فعال -->
                             <div class="col-md-8">
                                 <div class="card shadow-sm" style="min-height:260px;">
@@ -549,8 +534,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
 
                     <!-- فایل ها و مستندات -->

@@ -34,5 +34,8 @@ class Project extends Model
         'commitment_balance'            ,
         'logo'                          ,
     ];
-
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

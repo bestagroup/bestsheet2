@@ -2,9 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\SubmenuPanel;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckAdminAuthenticated
@@ -14,25 +16,53 @@ class CheckAdminAuthenticated
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next , $guard = null): Response
+    public function handle(Request $request, Closure $next , $guard = null ,  $permissionType = null, $submenuSlug = null): Response
     {
 
-        if (!Auth::guard($guard)->check()) {
+        $guard = 'panel';
+        // 1. بررسی ورود
+
+
+        if (!Auth::guard()->check()) {
             return redirect()->route('login');
         }
 
-        $user = Auth::guard($guard)->user();
+        $user = Auth::guard()->user();
 
-        if ($user->change_password == null) {
-            if (!$request->routeIs('password.change.form') && !$request->routeIs('password.change.submit')) {
+        // 2. بررسی اجبار به تغییر رمز
+        if (is_null($user->change_password)) {
+            // اگر مسیر جاری مربوط به فرم یا ارسال تغییر رمز نیست
+            if (
+                !$request->routeIs('password.change.form') &&
+                !$request->routeIs('password.change.submit')
+            ) {
                 return redirect()->route('password.change.form');
             }
         }
-        //$hasAccess = $user->roles()->where('level', 'admin')->exists();
 
-//        if (!$hasAccess) {
-//            abort(403, 'شما دسترسی به داشبورد را ندارید.');
-//        }
+        // 3. اگر پارامترهای دسترسی وارد نشده باشن، مرحله بعدی اجرا بشه
+        if (!$permissionType || !$submenuSlug) {
+            return $next($request);
+        }
+
+        // 4. بررسی دسترسی به زیرمنو
+        $submenu = SubmenuPanel::where('slug', $submenuSlug)->first();
+
+        if (!$submenu) {
+            abort(403, 'زیرمنو مورد نظر پیدا نشد.');
+        }
+
+        $roles = $user->roles()->pluck('roles.id');
+
+        $hasPermission = DB::table('submenu_permission')
+            ->whereIn('role_id', $roles)
+            ->where('submenu_id', $submenu->id)
+            ->where($permissionType, true)
+            ->exists();
+
+        if (!$hasPermission) {
+            abort(403, 'شما دسترسی لازم را ندارید.');
+        }
 
         return $next($request);
     }

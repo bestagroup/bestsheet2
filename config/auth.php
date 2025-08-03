@@ -42,7 +42,7 @@ return [
         ],
         'panel' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'panel_users',
         ],
         'api' => [
             'driver' => 'jwt',
@@ -72,7 +72,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
+        'panel_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class, // یا هر مدل دلخواه
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
