@@ -91,6 +91,6 @@ Auth::routes();
 //Route::view('/panel/file-management'            , 'panel.file_management')          ->name('panel.file_management');
 //Route::view('/panel/file-management'            , 'panel.file_management')          ->name('panel.file_management');
 
-Route::post('panel/fullregister', [App\Http\Controllers\Auth\FullregisterController::class, 'register'])->name('fullregister');
-Route::get('logout'             , [App\Http\Controllers\Auth\FullregisterController::class, 'logout'])->name('logout');
-Route::post('logout'            , [App\Http\Controllers\Auth\FullregisterController::class, 'logout'])->name('logout');
+Route::post('panel/fullregister', [App\Http\Controllers\Auth\FullRegisterController::class, 'register'])->name('fullregister');
+Route::get('logout'             , [App\Http\Controllers\Auth\FullRegisterController::class, 'logout'])->name('logout');
+Route::post('logout'            , [App\Http\Controllers\Auth\FullRegisterController::class, 'logout'])->name('logout');
