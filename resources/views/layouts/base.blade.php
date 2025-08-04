@@ -9,7 +9,7 @@
     <title>{{$thispage['list']}}</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}"/>
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/icon.png') }}"/>
 
     <!-- Fonts and Icons -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/materialdesignicons.css') }}"/>
