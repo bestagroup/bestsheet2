@@ -34,6 +34,7 @@ class FullRegisterController extends Controller
                 'name'              => $request->CEO,
                 'email'             => $request->email,
                 'phone'             => $request->phone,
+                'level'             => 'investor',
                 'change_password'   => 1,
                 'password'          => Hash::make($request->password),
             ]);

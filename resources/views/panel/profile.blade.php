@@ -21,6 +21,7 @@
                                 کاربر
                             </button>
                         </li>
+                        @if(Auth::user()->level == 'investor')
                         <li class="nav-item">
                             <button type="button" class="nav-link d-flex flex-column gap-1" role="tab"
                                     data-bs-toggle="tab" data-bs-target="#navs-co-profile-card"
@@ -56,6 +57,7 @@
                                     class="tf-icons mdi mdi-comment-text-multiple mdi-20px me-1"></i>تعهدات و تضامین
                             </button>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -97,7 +99,7 @@
 
                                 </div>
                                 <h5 class="pb-3 border-bottom mb-3">مشخصات فردی</h5>
-                                <div class="info-container">
+                                <div class="info-container" style="text-align: right;max-width: 30%;margin: 0 auto;">
                                     <ul class="list-unstyled mb-4">
                                         <li class="mb-3">
                                             <span class="fw-semibold text-heading me-2">نام کاربری:</span>
@@ -113,23 +115,15 @@
                                         </li>
                                         <li class="mb-3">
                                             <span class="fw-semibold text-heading me-2">نقش:</span>
-                                            <span>کاربر عادی</span>
-                                        </li>
-                                        <li class="mb-3">
-                                            <span class="fw-semibold text-heading me-2">شناسه مالیاتی:</span>
-                                            <span>Tax-8965</span>
+                                            @if(Auth::user()->level == 'admin')
+                                                <span> مدیر سیستم </span>
+                                            @elseif(Auth::user()->level == 'investor')
+                                                <span> مدیر سیستم </span>
+                                            @endif
                                         </li>
                                         <li class="mb-3">
                                             <span class="fw-semibold text-heading me-2">تماس:</span>
                                             <span>{{Auth::user()->phone}}</span>
-                                        </li>
-                                        <li class="mb-3">
-                                            <span class="fw-semibold text-heading me-2">زبان‌ها:</span>
-                                            <span>فرانسوی</span>
-                                        </li>
-                                        <li class="mb-3">
-                                            <span class="fw-semibold text-heading me-2">کشور:</span>
-                                            <span>انگلستان</span>
                                         </li>
                                     </ul>
                                     <div class="d-flex justify-content-center">
@@ -284,7 +278,7 @@
                             'website' => 'parscompany.ir'
                         ];
                     @endphp
-
+                    @if(Auth::user()->level == 'investor')
                     <div class="tab-pane fade justify-content-center" id="navs-co-profile-card" role="tabpanel">
                         {{-- نمایش کارت اطلاعات شرکت --}}
                         <div id="companyProfileCard" class="{{ $hasProfile ? '' : 'd-none' }}">
@@ -496,7 +490,7 @@
                         @endphp
 
                         @php
-                            $currentStep = 0;
+                            $currentStep = 7;
                         @endphp
 
                         <div class="row" style="direction:rtl;">
@@ -889,6 +883,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
